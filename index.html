@@ -1,1302 +1,170 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TVFreedom - Live TV Streaming</title>
+    <title>TVFREEDOM - En Mantenimiento :(</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --primary: #0c0c1d;
-            --secondary: #1a1a3a;
-            --accent: #ff3366;
-            --text: #ffffff;
-            --text-secondary: #cccccc;
-            --success: #00cc66;
-            --warning: #ffcc00;
-            --sport-color: #3399ff;
-            --football-color: #ff9933;
-            --basketball-color: #66cc66;
-            --tennis-color: #9966cc;
-        }
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            background: #0c0c1d;
-            color: var(--text);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a2a6c, #2c3e50, #4a235a);
             min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-        }
-        
-        /* Animated background */
-        .animated-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
-        
-        .bg-shape {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0.3;
-            animation: float 15s ease-in-out infinite;
-        }
-        
-        .shape1 {
-            width: 400px;
-            height: 400px;
-            background: #ff3366;
-            top: -100px;
-            left: -100px;
-            animation-delay: 0s;
-        }
-        
-        .shape2 {
-            width: 300px;
-            height: 300px;
-            background: #3399ff;
-            bottom: -50px;
-            right: -50px;
-            animation-delay: 2s;
-        }
-        
-        .shape3 {
-            width: 200px;
-            height: 200px;
-            background: #6633ff;
-            bottom: 30%;
-            left: 20%;
-            animation-delay: 4s;
-        }
-        
-        .shape4 {
-            width: 350px;
-            height: 350px;
-            background: #ff9933;
-            top: 40%;
-            right: 10%;
-            animation-delay: 6s;
-        }
-        
-        @keyframes float {
-            0% {
-                transform: translate(0, 0) rotate(0deg);
-            }
-            25% {
-                transform: translate(20px, 20px) rotate(90deg);
-            }
-            50% {
-                transform: translate(0, 40px) rotate(180deg);
-            }
-            75% {
-                transform: translate(-20px, 20px) rotate(270deg);
-            }
-            100% {
-                transform: translate(0, 0) rotate(360deg);
-            }
-        }
-        
-        header {
-            background: rgba(12, 12, 29, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #ecf0f1;
         }
         
         .container {
-            width: 95%;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            text-align: center;
+            max-width: 800px;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .logo {
-            font-size: 2.2rem;
-            font-weight: 800;
-            background: linear-gradient(45deg, var(--accent), #ff6699);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-decoration: none;
-            letter-spacing: 1px;
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: #e74c3c;
+            text-shadow: 0 0 15px rgba(231, 76, 60, 0.7);
         }
         
-        .logo span {
-            color: var(--text);
-            -webkit-text-fill-color: var(--text);
-        }
-        
-        .nav-menu {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-item {
-            margin-left: 2.5rem;
-        }
-        
-        .nav-link {
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            padding: 0.5rem 1rem;
-            border-radius: 30px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .nav-link:hover, .nav-link.active {
-            background: rgba(255, 51, 102, 0.2);
-            color: var(--accent);
-        }
-        
-        .nav-link.active {
-            box-shadow: 0 0 15px rgba(255, 51, 102, 0.4);
-        }
-        
-        .hero {
-            padding: 5rem 0;
-            text-align: center;
-            position: relative;
-            z-index: 10;
-        }
-        
-        .hero h1 {
+        h1 {
             font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(45deg, var(--accent), #ff99cc);
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #e74c3c, #f39c12);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-weight: 800;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
         
-        .hero p {
-            font-size: 1.3rem;
-            max-width: 800px;
-            margin: 0 auto 3rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
+        .subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: #ecf0f1;
+            opacity: 0.9;
         }
         
-        .live-section {
-            padding: 3rem 0;
-            position: relative;
-            z-index: 10;
+        .team {
+            font-size: 2.2rem;
+            font-weight: bold;
+            margin: 25px 0;
+            color: #2ecc71;
+            text-shadow: 0 0 10px rgba(46, 204, 113, 0.5);
         }
         
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2.5rem;
-        }
-        
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--text);
-            position: relative;
-            display: inline-block;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 70px;
-            height: 4px;
-            background: var(--accent);
-            border-radius: 2px;
-        }
-        
-        .channels-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-        
-        .channel-card {
-            background: rgba(26, 26, 58, 0.7);
-            border-radius: 15px;
-            overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-        }
-        
-        .channel-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(255, 51, 102, 0.3);
-        }
-        
-        .channel-icon {
-            height: 150px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(45deg, var(--secondary), #2a2a4a);
-            font-weight: 700;
-            font-size: 1.2rem;
-            text-align: center;
-            padding: 1rem;
-            color: var(--text);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .channel-info {
-            padding: 1.5rem;
-        }
-        
-        .channel-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--text);
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-        
-        .channel-category {
-            font-size: 0.85rem;
-            color: var(--accent);
-            margin-bottom: 1rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .watch-btn {
-            display: inline-block;
-            background: linear-gradient(45deg, var(--accent), #ff6699);
-            color: white;
-            padding: 0.7rem 1.5rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 0.95rem;
-            box-shadow: 0 4px 15px rgba(255, 51, 102, 0.4);
-            width: 100%;
-            text-align: center;
-            margin-bottom: 1rem;
-        }
-        
-        .watch-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 51, 102, 0.6);
-        }
-        
-        .category-sport {
-            background: linear-gradient(45deg, var(--sport-color), #66aaff);
-        }
-        
-        .category-football {
-            background: linear-gradient(45deg, var(--football-color), #ffbb66);
-        }
-        
-        .category-basketball {
-            background: linear-gradient(45deg, var(--basketball-color), #88dd88);
-        }
-        
-        .category-tennis {
-            background: linear-gradient(45deg, var(--tennis-color), #bb99dd);
-        }
-        
-        .filter-section {
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-        
-        .filter-buttons {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-        
-        .filter-btn {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--text);
-            border: none;
-            padding: 0.5rem 1.5rem;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-        
-        .filter-btn:hover, .filter-btn.active {
-            background: var(--accent);
-            color: white;
-        }
-        
-        .search-box {
-            max-width: 500px;
-            margin: 2rem auto;
-            position: relative;
-        }
-        
-        .search-input {
-            width: 100%;
-            padding: 1rem 1.5rem;
-            border-radius: 50px;
-            border: none;
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--text);
-            font-size: 1rem;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-        
-        .search-input:focus {
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 0 20px rgba(255, 51, 102, 0.3);
-        }
-        
-        .video-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 2000;
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+        .disclaimer {
+            background: rgba(231, 76, 60, 0.2);
+            border-left: 4px solid #e74c3c;
             padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 10px 10px 0;
         }
         
-        .video-container.active {
-            display: flex;
-        }
-        
-        .close-video {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--accent);
-            color: white;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+        .disclaimer h3 {
             font-size: 1.5rem;
-            cursor: pointer;
-            z-index: 2001;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            color: #e74c3c;
+            margin-bottom: 10px;
         }
         
-        .video-wrapper {
-            width: 100%;
-            max-width: 1200px;
-            height: 80vh;
-            position: relative;
-        }
-        
-        .video-iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            border-radius: 10px;
-        }
-        
-        .video-title {
-            color: white;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            text-align: center;
-            z-index: 2001;
-        }
-        
-        footer {
-            background: rgba(12, 12, 29, 0.95);
-            padding: 3rem 0 2rem;
-            margin-top: 3rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            z-index: 10;
-        }
-        
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-        
-        .footer-logo {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(45deg, var(--accent), #ff6699);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin: 2rem 0;
-            gap: 2rem;
-        }
-        
-        .footer-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.3s;
-            font-weight: 500;
-        }
-        
-        .footer-link:hover {
-            color: var(--accent);
-        }
-        
-        .copyright {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-top: 2rem;
-            max-width: 800px;
+        .disclaimer p {
+            font-size: 1.2rem;
             line-height: 1.6;
         }
         
-        /* Alert Modal */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .modal {
-            background: rgba(26, 26, 58, 0.98);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 2.5rem;
-            width: 90%;
-            max-width: 650px;
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            animation: slideUp 0.5s ease;
-            position: relative;
-        }
-        
-        @keyframes slideUp {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        
-        .modal-title {
-            font-size: 1.8rem;
-            color: var(--warning);
-            margin-bottom: 1.5rem;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            border-bottom: 2px solid rgba(255, 204, 0, 0.3);
-            padding-bottom: 1rem;
-        }
-        
-        .modal-content {
-            color: var(--text);
-            line-height: 1.7;
-            margin-bottom: 2rem;
+        .footer {
+            margin-top: 30px;
             font-size: 1.1rem;
+            opacity: 0.7;
         }
         
-        .important-notice {
-            background: rgba(255, 204, 0, 0.1);
-            border: 1px solid rgba(255, 204, 0, 0.3);
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            color: var(--warning);
-        }
-        
-        .modal-list {
-            list-style: none;
-            margin: 1.5rem 0;
-        }
-        
-        .modal-list li {
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            padding: 1rem;
-            background: rgba(255, 51, 102, 0.1);
-            border-radius: 10px;
-            border-left: 4px solid var(--accent);
-        }
-        
-        .modal-list li::before {
-            content: "🔹";
-            font-size: 1.2rem;
-            margin-right: 5px;
-            color: var(--accent);
-        }
-        
-        .modal-links {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        
-        .modal-link {
-            background: linear-gradient(45deg, var(--accent), #ff6699);
-            color: white;
-            text-decoration: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 10px;
-            font-weight: 600;
-            text-align: center;
-            transition: all 0.3s ease;
-            display: inline-block;
-            font-size: 1.1rem;
-        }
-        
-        .modal-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 20px rgba(255, 51, 102, 0.4);
-        }
-        
-        .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            color: white;
-            width: 35px;
-            height: 35px;
+        .spinner {
+            width: 80px;
+            height: 80px;
+            border: 6px solid rgba(255, 255, 255, 0.3);
+            border-top: 6px solid #e74c3c;
             border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
+            margin: 30px auto;
+            animation: spin 1.5s linear infinite;
         }
         
-        .close-btn:hover {
-            background: rgba(255, 51, 102, 0.3);
-            transform: rotate(90deg);
-        }
-        
-        .warning-text {
-            color: var(--warning);
-            font-weight: 700;
-            margin: 1rem 0;
-            font-size: 1.2rem;
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         
         @media (max-width: 768px) {
-            .hero h1 {
+            .container {
+                padding: 25px;
+            }
+            
+            h1 {
                 font-size: 2.5rem;
             }
             
-            .section-title {
-                font-size: 2rem;
+            .subtitle {
+                font-size: 1.4rem;
             }
             
-            .channels-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .nav-item {
-                margin-left: 1.5rem;
-            }
-            
-            .channel-icon {
-                height: 120px;
-                font-size: 1rem;
-            }
-            
-            .filter-buttons {
-                gap: 0.5rem;
-            }
-            
-            .filter-btn {
-                padding: 0.5rem 1rem;
-                font-size: 0.9rem;
-            }
-            
-            .video-wrapper {
-                height: 70vh;
+            .team {
+                font-size: 1.8rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="animated-bg">
-        <div class="bg-shape shape1"></div>
-        <div class="bg-shape shape2"></div>
-        <div class="bg-shape shape3"></div>
-        <div class="bg-shape shape4"></div>
-    </div>
-
-    <!-- Alert Modal -->
-    <div class="modal-overlay" id="alertModal">
-        <div class="modal">
-            <button class="close-btn" id="closeModal">&times;</button>
-            <h2 class="modal-title">⚠️ IMPORTANT NOTICE ⚠️</h2>
-            <div class="modal-content">
-                <p>To ensure optimal viewing experience on TVFreedom, you must follow these security recommendations:</p>
-                
-                <div class="important-notice">
-                    <strong>TVFreedom Policy:</strong> Any website that is not ours should not accept or display advertisements. 
-                    For your protection and to ensure uninterrupted streaming, we require all users to install the recommended tools.
-                </div>
-                
-                <ul class="modal-list">
-                    <li>
-                        <strong>Install uBlock Origin</strong> - A powerful ad blocker that will prevent unwanted ads and trackers from interfering with your streaming experience.
-                    </li>
-                    <li>
-                        <strong>Use 1.1.1.1 DNS (ONLY IF DOESNT WORK!)</strong> - A faster, safer, and more private way to browse the internet that will improve your streaming quality.
-                    </li>
-                </ul>
-                
-                <p class="warning-text">⚠️ WARNING: If you don't install these tools, you may not be able to view matches correctly!</p>
-                <p class="warning-text">💻 WARNING: We are not responsable if you are bombed with ads because you didnt go step by step!
-                <p class="warning-text">🧪 WARNING: Please if you have problems contact my via instagram: <a href="https://instagram.com/guzesqdro" target="_blank">@guzesqdro</a></p>
- <p class="warning-text">⚠️ WARNING: If you don't install these tools, you will be BOMBED 💣 with 🔞 ads and redlinks.</p>
+    <div class="container">
+        <div class="logo">
+            <i class="fas fa-tv"></i>
+        </div>
+        
+        <h1>EN MANTENIMIENTO</h1>
+        
+        <div class="subtitle">
+            Estamos mejorando nuestra plataforma para ofrecerte una mejor experiencia
+            Si necesita mas información contactenos por Instagram                 <p class="warning-text"><a href="https://instagram.com/guzesqdro" target="_blank">@guzesqdro</a></p>
+            <strong>DESLICE ABAJO PARA VER EL PARTIDO DEL REAL</strong>
+        </div>
+        
+        <div class="spinner"></div>
+        
+        <div class="team">
+            Equipo de TVFREEDOM (guzesqdro)
+        </div>
+        
+        <div class="disclaimer">
+            <h3><i class="fas fa-exclamation-triangle"></i> AVISO IMPORTANTE</h3>
+            <p>
+                <strong>NO NOS HACEMOS RESPONSABLES</strong> por el partido a continuación.
+                <strong>NO ES NUESTRO</strong> esto es debido a por que LaLiga decidio cerrar muchos sitios web donde ofrecian
+                futbol gratuito, pueden descubrir mas información en el siguiente link:
+                https://shorturl.at/h20bc
                 </p>
-
-            </div>
-            
-            <div class="modal-links">
-                <a href="https://chromewebstore.google.com/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm" target="_blank" class="modal-link">Download uBlock Origin for Chrome</a>
-                <a href="https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/" target="_blank" class="modal-link">Download uBlock Origin for Firefox</a>
-                <a href="https://one.one.one.one/" target="_blank" class="modal-link">Setup 1.1.1.1 DNS by Cloudflare</a>
-            </div>
-            
-            <button class="watch-btn" id="acceptBtn">I understand and have installed the required tools 🥳</button>
+                <p>
+                Esta plataforma se encuentra temporalmente fuera de servicio para
+                mantenimiento técnico y actualizaciones necesarias.
+            </p>
         </div>
-    </div>
-
-    <!-- Video Player Modal -->
-    <div class="video-container" id="videoContainer">
-        <button class="close-video" id="closeVideoBtn">&times;</button>
-        <h2 class="video-title" id="videoTitle">Loading Stream...</h2>
-        <div class="video-wrapper">
-            <iframe class="video-iframe" id="videoIframe" src="" frameborder="0" allowfullscreen></iframe>
-        </div>
-    </div>
-
-    <header>
-        <div class="container">
-            <nav class="nav-container">
-                <a href="#" class="logo">TV<span>Freedom</span></a>
-                <ul class="nav-menu">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link active">Live TV</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <main>
-        <section class="hero">
-            <h1>TVFreedom Live TV</h1>
-            <p>Experience the thrill of live sports with our premium streaming service. Watch football, basketball, tennis and more in crystal clear HD quality - completely free and without any ads. 
-            ONLY IF YOU DID THE STEP-BY-STEP THING!</p>
-            <p class="warning-text">🧪 WARNING: Please if you have problems contact my via instagram: <a href="https://instagram.com/guzesqdro" target="_blank">@guzesqdro</a></p>
-            <p class="warning-text">💻 WARNING: If you find channels that are down, we will update them in the next 24h!</p>
-            <p class="warning-text">⚠️ WARNING: If you don't install these tools, you will be BOMBED 💣 with 🔞 ads and redlinks.</p>
-        </section>
-
-        <div class="container">
-            <section class="live-section">
-                <div class="filter-section">
-                    <h2 class="section-title">All Channels</h2>
-                    <div class="filter-buttons">
-                        <button class="filter-btn active" data-filter="all">All 📺</button>
-                        <button class="filter-btn" data-filter="football">Football ⚽</button>
-                        <button class="filter-btn" data-filter="basketball">Basketball 🏀</button>
-                        <button class="filter-btn" data-filter="tennis">Tennis 🎾</button>
-                        <button class="filter-btn" data-filter="sport">Sport 🏆</button>
-                    </div>
-                </div>
-
-                <div class="search-box">
-                    <input type="text" class="search-input" id="searchInput" placeholder="Search for a channel...">
-                </div>
-
-                <div class="channels-grid" id="channelsGrid">
-                    <!-- Channels will be dynamically inserted here -->
-                </div>
-            </section>
-        </div>
-    </main>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">guzesqdro.github.io/tvfreedom</div>
-                <div class="footer-links">
-                    <a href="#" class="footer-link">Home 🏠</a>
-                    <a href="#" class="footer-link">Live TV 📺</a>
-                    <a href="#" class="footer-link">About ℹ️</a>
-                    <a href="#" class="footer-link">Contact 📧</a>
-                </div>
-                <p class="copyright">
-                    &copy; 2025 TVFreedom 🎉⚽🏀🎾🏆 All rights reserved. This service is provided for personal use only. 
+        <iframe allowFullScreen frameborder=0 marginheight=0 marginwidth=0 scrolling='no'src="//emb.apl385.me/player/live.php?id=244561&w=512&h=288" width="512" height="288">Your browser does not support inline frames or is currently configured not to display inline frames.</iframe>
+        
+        <div class="footer">
+            <p>2025 © TVFreedom 🎉⚽🏀🎾🏆 All rights reserved. This service is provided for personal use only. 
                     TVFreedom respects all copyright laws and only retransmits content for which we have proper authorization.
-                    Hosted at guzesqdro.github.io/tvfreedom 🌐
-                </p>
-                <p class="copyright">
-                    <strong>Notice:</strong> We require all users to install uBlock Origin 🛡️ and use 1.1.1.1 DNS 🌩️ for optimal streaming experience.
-                </p>
-                 </p>      </p>
-                <p class="copyright">
-                    Made with ❤️ and passion for sports! 🎯 No ads, no tracking, just pure entertainment! 🚀 </p>
-                
-            </div>
+                    Hosted at guzesqdro.github.io/tvfreedom 🌐</p>
         </div>
-    </footer>
-
-    <script>
-        // Channel data with URLs
-        const channels = [
-            { name: "Eurosport 1 UK HD", category: "sport", url: "https://www.vidembed.re/stream/49ce41be-859d-47fa-97bd-2ef98cbfa2b4#autostart" },
-            { name: "Eurosport 2 UK HD", category: "sport", url: "https://antenasport.org/eurosport2uk.php" },
-            { name: "OKKO Sport Russia", category: "sport", url: "https://antenasport.org/okkosport.php" },
-            { name: "OKKO Sport 2 Russia", category: "sport", url: "https://antenasport.org/okkosport2.php" },
-            { name: "OKKO Futbol Russia", category: "football", url: "https://antenasport.org/okkofutbol.php" },
-            { name: "Movistar + LaLiga", category: "football", url: "https://antenasport.org/movistarliga1.php" },
-            { name: "DAZN LaLiga Spain", category: "football", url: "https://antenasport.org/dazn1laliga.php" },
-            { name: "DAZN 2 LaLiga Spain", category: "football", url: "https://antenasport.org/dazn2laliga.php" },
-            { name: "LA LIGA TV UK", category: "football", url: "https://www.vidembed.re/stream/49ce41be-859d-47fa-97bd-2ef98cbfa2b4#autostart" },
-            { name: "LA LIGA TV Hypermotion Spain", category: "football", url: "https://antenasport.org/liga1.php" },
-            { name: "LA LIGA TV Hypermotion 2 Spain", category: "football", url: "https://antenasport.org/liga2.php" },
-            { name: "Sky Bundesliga HD", category: "football", url: "https://antenasport.org/skyhd.php" },
-            { name: "Sky Bundesliga 1 HD", category: "football", url: "https://antenasport.org/sky1de.php" },
-            { name: "Sky Bundesliga 2 HD", category: "football", url: "https://antenasport.org/sky2de.php" },
-            { name: "Sky Bundesliga 3 HD", category: "football", url: "https://antenasport.org/sky3de.php" },
-            { name: "Sky Bundesliga 4 HD", category: "football", url: "https://antenasport.org/sky4de.php" },
-            { name: "Sky Bundesliga 5 HD", category: "football", url: "https://antenasport.org/sky5de.php" },
-            { name: "Sky Bundesliga 6 HD", category: "football", url: "https://antenasport.org/sky6de.php" },
-            { name: "Sky Bundesliga 7 HD", category: "football", url: "https://antenasport.org/sky7de.php" },
-            { name: "Sky Bundesliga 8 HD", category: "football", url: "https://antenasport.org/sky8de.php" },
-            { name: "Sky Bundesliga 9 HD", category: "football", url: "https://antenasport.org/sky9de.php" },
-            { name: "Sky Bundesliga 10 HD", category: "football", url: "https://antenasport.org/sky10de.php" },
-            { name: "Setanta Sport 1 Eurasia HD", category: "sport", url: "https://antenasport.org/setantasport1.php" },
-            { name: "Setanta Sport 2 Eurasia HD", category: "sport", url: "https://antenasport.org/setantasport2.php" },
-            { name: "Setanta Sport Ukraine HD", category: "sport", url: "https://antenasport.org/setantaukraine.php" },
-            { name: "Setanta Sport Ukraine Plus HD", category: "sport", url: "https://antenasport.org/setantaukraineplus.php" },
-            { name: "Setanta Sport Ukraine Premium HD", category: "sport", url: "https://antenasport.org/setantapremium.php" },
-            { name: "Setanta Sport Kazakstan HD", category: "sport", url: "https://antenasport.org/setantakazakstan.php" },
-            { name: "Match TV Russia HD", category: "sport", url: "https://antenasport.org/match.php" },
-            { name: "Match Futbol 1 Russia HD", category: "football", url: "https://antenasport.org/match1.php" },
-            { name: "Match Futbol 2 Russia HD", category: "football", url: "https://antenasport.org/match2.php" },
-            { name: "Match Futbol 3 Russia HD", category: "football", url: "https://antenasport.org/match3.php" },
-            { name: "Match Premier Russia HD", category: "football", url: "https://antenasport.org/matchpremier.php" },
-            { name: "Match Boets Russia HD", category: "sport", url: "https://antenasport.org/matchboets.php" },
-            { name: "Match Igra Russia HD", category: "sport", url: "https://antenasport.org/matchigra.php" },
-            { name: "Match Arena Russia HD", category: "sport", url: "https://antenasport.org/matcharena.php" },
-            { name: "Setanta Sport 1 Georgia HD", category: "sport", url: "https://antenasport.org/setantasport1georgia.php" },
-            { name: "Setanta Sport 2 Georgia HD", category: "sport", url: "https://antenasport.org/setantasport2georgia.php" },
-            { name: "Silk Sport 1 Georgia HD", category: "sport", url: "https://antenasport.org/silksport1georgia.php" },
-            { name: "Silk Sport 2 Georgia HD", category: "sport", url: "https://antenasport.org/silksport2georgia.php" },
-            { name: "Sky Sports 1 New Zealand", category: "sport", url: "https://antenasport.org/sky1nz.php" },
-            { name: "Sky Sports 2 New Zealand", category: "sport", url: "https://antenasport.org/sky2nz.php" },
-            { name: "Sky Sports 3 New Zealand", category: "sport", url: "https://antenasport.org/sky3nz.php" },
-            { name: "Sky Sports 4 New Zealand", category: "sport", url: "https://antenasport.org/sky4nz.php" },
-            { name: "Sky Sports 5 New Zealand", category: "sport", url: "https://antenasport.org/sky5nz.php" },
-            { name: "Sky Sports 6 New Zealand", category: "sport", url: "https://antenasport.org/sky6nz.php" },
-            { name: "Sky Sports 7 New Zealand", category: "sport", url: "https://antenasport.org/sky7nz.php" },
-            { name: "Sky Sports 8 New Zealand", category: "sport", url: "https://antenasport.org/sky8nz.php" },
-            { name: "Sky Sports 9 New Zealand", category: "sport", url: "https://antenasport.org/sky9nz.php" },
-            { name: "Sky Sports Select New Zealand", category: "sport", url: "https://antenasport.org/skyselectnz.php" },
-            { name: "TSN 1 Canada", category: "sport", url: "https://antenasport.org/tsn1.php" },
-            { name: "TSN 2 Canada", category: "sport", url: "https://antenasport.org/tsn2.php" },
-            { name: "TSN 3 Canada", category: "sport", url: "https://antenasport.org/tsn3.php" },
-            { name: "TSN 4 Canada", category: "sport", url: "https://antenasport.org/tsn4.php" },
-            { name: "TSN 5 Canada", category: "sport", url: "https://antenasport.org/tsn5.php" },
-            { name: "Polsat Sport 1 HD", category: "sport", url: "https://antenasport.org/polsatsport1.php" },
-            { name: "Polsat Sport 2 HD", category: "sport", url: "https://antenasport.org/polsatsport2.php" },
-            { name: "Polsat Sport 3 HD", category: "sport", url: "https://antenasport.org/polsatsport3.php" },
-            { name: "Polsat Sport 1 Premium HD", category: "sport", url: "https://antenasport.org/polsatpremium1.php" },
-            { name: "Polsat Sport 2 Premium HD", category: "sport", url: "https://antenasport.org/polsatpremium2.php" },
-            { name: "Canal Sport 1 Poland HD", category: "sport", url: "https://antenasport.org/canalsportplus1pl.php" },
-            { name: "Canal Sport 2 Poland HD", category: "sport", url: "https://antenasport.org/canalsportplus2pl.php" },
-            { name: "Canal Sport 3 Poland HD", category: "sport", url: "https://antenasport.org/canalsportplus3pl.php" },
-            { name: "Canal Sport 4 Poland HD", category: "sport", url: "https://antenasport.org/canalsportplus4pl.php" },
-            { name: "Canal Sport 5 Poland HD", category: "sport", url: "https://antenasport.org/canalsportplus5pl.php" },
-            { name: "Eleven Sport 1 Poland HD", category: "sport", url: "https://antenasport.org/elevensport1pl.php" },
-            { name: "Eleven Sport 2 Poland HD", category: "sport", url: "https://antenasport.org/elevensport2pl.php" },
-            { name: "Eleven Sport 3 Poland HD", category: "sport", url: "https://antenasport.org/elevensport3pl.php" },
-            { name: "Eleven Sport 4 Poland HD", category: "sport", url: "https://antenasport.org/elevensport4pl.php" },
-            { name: "OnePlay Sport 1 Czech HD", category: "sport", url: "https://antenasport.org/oneplaysport1.php" },
-            { name: "OnePlay Sport 2 Czech HD", category: "sport", url: "https://antenasport.org/oneplaysport2.php" },
-            { name: "OnePlay Sport 3 Czech HD", category: "sport", url: "https://antenasport.org/oneplaysport3.php" },
-            { name: "Novasport 1 Czech HD", category: "sport", url: "https://antenasport.org/novasport1cz.php" },
-            { name: "Novasport 2 Czech HD", category: "sport", url: "https://antenasport.org/novasport2cz.php" },
-            { name: "Novasport 3 Czech HD", category: "sport", url: "https://antenasport.org/novasport3cz.php" },
-            { name: "Novasport 4 Czech HD", category: "sport", url: "https://antenasport.org/novasport4cz.php" },
-            { name: "Novasport 5 Czech HD", category: "sport", url: "https://antenasport.org/novasport5cz.php" },
-            { name: "Novasport 6 Czech HD", category: "sport", url: "https://antenasport.org/novasport6cz.php" },
-            { name: "Canal Sport 1 Czech HD", category: "sport", url: "https://antenasport.org/canalsportplus1cz.php" },
-            { name: "Canal Sport 2 Czech HD", category: "sport", url: "https://antenasport.org/canalsportplus2cz.php" },
-            { name: "Canal Sport 3 Czech HD", category: "sport", url: "https://antenasport.org/canalsportplus3cz.php" },
-            { name: "Canal Sport 4 Czech HD", category: "sport", url: "https://antenasport.org/canalsportplus4cz.php" },
-            { name: "Canal Sport 5 Czech HD", category: "sport", url: "https://antenasport.org/canalsportplus5cz.php" },
-            { name: "Canal Sport 6 Czech HD", category: "sport", url: "https://antenasport.org/canalsportplus6cz.php" },
-            { name: "Canal Sport 7 Czech HD", category: "sport", url: "https://antenasport.org/canalsportplus7cz.php" },
-            { name: "Canal Sport 8 Czech HD", category: "sport", url: "https://antenasport.org/canalsportplus8cz.php" },
-            { name: "Premier Sport 1 Czech HD", category: "sport", url: "https://antenasport.org/premiersport1cz.php" },
-            { name: "Premier Sport 2 Czech HD", category: "sport", url: "https://antenasport.org/premiersport2cz.php" },
-            { name: "Premier Sport 3 Czech HD", category: "sport", url: "https://antenasport.org/premiersport3cz.php" },
-            { name: "Sport 1 Israel", category: "sport", url: "https://antenasport.org/sport1il.php" },
-            { name: "Sport 2 Israel", category: "sport", url: "https://antenasport.org/sport2il.php" },
-            { name: "Sport 3 Israel", category: "sport", url: "https://antenasport.org/sport3il.php" },
-            { name: "Sport 4 Israel", category: "sport", url: "https://antenasport.org/sport4il.php" },
-            { name: "Sport 5 Israel", category: "sport", url: "https://antenasport.org/sport5il.php" },
-            { name: "Sport 5 Live Israel", category: "sport", url: "https://antenasport.org/sport5live.php" },
-            { name: "Sport 5 Stars Israel", category: "sport", url: "https://antenasport.org/sport5starsil.php" },
-            { name: "Sport 5 Gold Israel", category: "sport", url: "https://antenasport.org/sport5goldil.php" },
-            { name: "Sport 5 Plus Israel", category: "sport", url: "https://antenasport.org/sport5plusil.php" },
-            { name: "One Sport 1 Israel", category: "sport", url: "https://antenasport.org/oneisrael.php" },
-            { name: "Cosmote Sport 1", category: "sport", url: "https://antenasport.org/cosmote1.php" },
-            { name: "Cosmote Sport 2", category: "sport", url: "https://antenasport.org/cosmote2.php" },
-            { name: "Cosmote Sport 3", category: "sport", url: "https://antenasport.org/cosmote3.php" },
-            { name: "Cosmote Sport 4", category: "sport", url: "https://antenasport.org/cosmote4.php" },
-            { name: "Cosmote Sport 5", category: "sport", url: "https://antenasport.org/cosmote5.php" },
-            { name: "Cosmote Sport 6", category: "sport", url: "https://antenasport.org/cosmote6.php" },
-            { name: "Cosmote Sport 7", category: "sport", url: "https://antenasport.org/cosmote7.php" },
-            { name: "Cosmote Sport 8", category: "sport", url: "https://antenasport.org/cosmote8.php" },
-            { name: "Cosmote Sport 9", category: "sport", url: "https://antenasport.org/cosmote9.php" },
-            { name: "Novasport Prime", category: "sport", url: "https://antenasport.org/novasportprime.php" },
-            { name: "Nova Sport 1", category: "sport", url: "https://antenasport.org/novasport1gr.php" },
-            { name: "Nova Sport 2", category: "sport", url: "https://antenasport.org/novasport2gr.php" },
-            { name: "Nova Sport 3", category: "sport", url: "https://antenasport.org/novasport3gr.php" },
-            { name: "Nova Sport 4", category: "sport", url: "https://antenasport.org/novasport4gr.php" },
-            { name: "Nova Sport 5", category: "sport", url: "https://antenasport.org/novasport5gr.php" },
-            { name: "Nova Sport 6", category: "sport", url: "https://antenasport.org/novasport6gr.php" },
-            { name: "Nova Sport Start", category: "sport", url: "https://antenasport.org/novasportstart.php" },
-            { name: "Nova Sport Premier League", category: "football", url: "https://antenasport.org/novasportpremier.php" },
-            { name: "DIRECTV ARGENTINA", category: "sport", url: "https://antenasport.org/directsports.php" },
-            { name: "DIRECTV ARGENTINA 2", category: "sport", url: "https://antenasport.org/directsports2.php" },
-            { name: "DIRECTV ARGENTINA +", category: "sport", url: "https://antenasport.org/directsportsplus.php" },
-            { name: "ESPN 1 Argentina", category: "sport", url: "https://antenasport.org/espn1argentina.php" },
-            { name: "ESPN 2 Argentina", category: "sport", url: "https://antenasport.org/espn2argentina.php" },
-            { name: "ESPN 3 Argentina", category: "sport", url: "https://antenasport.org/espn3argentina.php" },
-            { name: "ESPN 4 Argentina", category: "sport", url: "https://antenasport.org/espn4argentina.php" },
-            { name: "ESPN Premium Argentina", category: "sport", url: "https://antenasport.org/espnpremiumargentina.php" },
-            { name: "FOX Sports 1 Argentina", category: "sport", url: "https://antenasport.org/foxsports1argentina.php" },
-            { name: "FOX Sports 2 Argentina", category: "sport", url: "https://antenasport.org/foxsports2argentina.php" },
-            { name: "FOX Sports 3 Argentina", category: "sport", url: "https://antenasport.org/foxsports3argentina.php" },
-            { name: "FOX Sports 1 Mexico", category: "sport", url: "https://antenasport.org/foxsports1mexico.php" },
-            { name: "FOX Sports 2 Mexico", category: "sport", url: "https://antenasport.org/foxsports2mexico.php" },
-            { name: "FOX Sports 3 Mexico", category: "sport", url: "https://antenasport.org/foxsports3mexico.php" },
-            { name: "FOX Sports Premium Mexico", category: "sport", url: "https://antenasport.org/foxsportspremiummexico.php" },
-            { name: "ESPN 1 Mexico", category: "sport", url: "https://antenasport.org/espn1mx.php" },
-            { name: "ESPN 2 Mexico", category: "sport", url: "https://antenasport.org/espn2mx.php" },
-            { name: "ESPN 3 Mexico", category: "sport", url: "https://antenasport.org/espn3mx.php" },
-            { name: "ESPN 4 Mexico", category: "sport", url: "https://antenasport.org/espn4mx.php" },
-            { name: "Azteca 7 Mexico", category: "sport", url: "https://antenasport.org/azteca7.php" },
-            { name: "Canal 5 Mexico", category: "sport", url: "https://antenasport.org/canal5mexico" },
-            { name: "TNT Sports Premium Chile", category: "sport", url: "https://antenasport.org/tntsportspremiumchile.php" },
-            { name: "TNT Sports Premium Argentina", category: "sport", url: "https://antenasport.org/tntsportspremiumargentina.php" },
-            { name: "GOLTV USA", category: "football", url: "https://antenasport.org/goltvusa.php" },
-            { name: "GOLTV Ecuador", category: "football", url: "https://antenasport.org/goltvecuador.php" },
-            { name: "WIN SPORT PLUS", category: "sport", url: "https://antenasport.org/winsportplus.php" },
-            { name: "ECDF Ecuador", category: "football", url: "https://antenasport.org/ecdfecuador.php" },
-            { name: "VTV Plus Uruguay", category: "sport", url: "https://antenasport.org/vtvplus.php" },
-            { name: "Liga 1 Max Peru", category: "football", url: "https://antenasport.org/liga1max.php" },
-            { name: "TV2 Denmark", category: "sport", url: "https://antenasport.org/tv2dk.php" },
-            { name: "TV2 Sport Denmark", category: "sport", url: "https://antenasport.org/tv2sportdk.php" },
-            { name: "TV2 Sport X Denmark", category: "sport", url: "https://antenasport.org/tv2sportxdk.php" },
-            { name: "TV3 Sport Denmark", category: "sport", url: "https://antenasport.org/tv3sportdk.php" },
-            { name: "TV3 Plus Denmark", category: "sport", url: "https://antenasport.org/tv3plusdk.php" },
-            { name: "TV3 Max Denmark", category: "sport", url: "https://antenasport.org/tv3maxdk.php" },
-            { name: "TV2 Sport 1 Norway", category: "sport", url: "https://antenasport.org/tv2sport1.php" },
-            { name: "TV2 Sport 2 Norway", category: "sport", url: "https://antenasport.org/tv2sport2.php" },
-            { name: "TV2 Sport Premium Norway", category: "sport", url: "https://antenasport.org/tv2sportpremium.php" },
-            { name: "Movistar Campeones", category: "football", url: "https://antenasport.org/movistarcampeones.php" },
-            { name: "Movistar Campeones 2", category: "football", url: "https://antenasport.org/movistarcampeones2.php" },
-            { name: "Movistar Campeones 3", category: "football", url: "https://antenasport.org/movistarcampeones3.php" },
-            { name: "Movistar Campeones 4", category: "football", url: "https://antenasport.org/movistarcampeones4.php" },
-            { name: "Canal + Live 1 France", category: "sport", url: "https://antenasport.org/canalpluslive1.php" },
-            { name: "Canal + Live 2 France", category: "sport", url: "https://antenasport.org/canalpluslive2.php" },
-            { name: "Canal + Live 3 France", category: "sport", url: "https://antenasport.org/canalpluslive3.php" },
-            { name: "Canal + Live 4 France", category: "sport", url: "https://antenasport.org/canalpluslive4.php" },
-            { name: "Canal + Live 5 France", category: "sport", url: "https://antenasport.org/canalpluslive5.php" },
-            { name: "Canal + Live 6 France", category: "sport", url: "https://antenasport.org/canalpluslive6.php" },
-            { name: "Canal + Live 7 France", category: "sport", url: "https://antenasport.org/canalpluslive7.php" },
-            { name: "Canal + Live 8 France", category: "sport", url: "https://antenasport.org/canalpluslive8.php" },
-            { name: "Canal + Live 9 France", category: "sport", url: "https://antenasport.org/canalpluslive9.php" },
-            { name: "Canal + Live 10 France", category: "sport", url: "https://antenasport.org/canalpluslive10.php" },
-            { name: "Canal + Live 11 France", category: "sport", url: "https://antenasport.org/canalpluslive11.php" },
-            { name: "Canal + Live 12 France", category: "sport", url: "https://antenasport.org/canalpluslive12.php" },
-            { name: "Canal + Live 13 France", category: "sport", url: "https://antenasport.org/canalpluslive13.php" },
-            { name: "Canal + Live 14 France", category: "sport", url: "https://antenasport.org/canalpluslive14.php" },
-            { name: "Canal + Live 15 France", category: "sport", url: "https://antenasport.org/canalpluslive15.php" },
-            { name: "Canal + Live 16 France", category: "sport", url: "https://antenasport.org/canalpluslive16.php" },
-            { name: "Canal + Live 17 France", category: "sport", url: "https://antenasport.org/canalpluslive17.php" },
-            { name: "Canal + Live 18 France", category: "sport", url: "https://antenasport.org/canalpluslive18.php" },
-            { name: "TNT Sport 1 UK", category: "sport", url: "https://antenasport.org/maxtnt1.php" },
-            { name: "TNT Sport 2 UK", category: "sport", url: "https://antenasport.org/maxtnt2.php" },
-            { name: "TNT Sport 3 UK", category: "sport", url: "https://antenasport.org/maxtnt3.php" },
-            { name: "TNT Sport 4 UK", category: "sport", url: "https://antenasport.org/maxtnt4.php" },
-            { name: "TNT Sport 5 UK", category: "sport", url: "https://antenasport.org/maxtnt5.php" },
-            { name: "TNT Sport 6 UK", category: "sport", url: "https://antenasport.org/maxtnt6.php" },
-            { name: "TNT Sport 7 UK", category: "sport", url: "https://antenasport.org/maxtnt7.php" },
-            { name: "TNT Sport 8 UK", category: "sport", url: "https://antenasport.org/maxtnt8.php" },
-            { name: "PremierSport 1 UK", category: "sport", url: "https://antenasport.org/viaplay1.php" },
-            { name: "PremierSport 2 UK", category: "sport", url: "https://antenasport.org/viaplay2.php" },
-            { name: "RSI LA 2 Switzerland", category: "sport", url: "https://antenasport.org/rsila2.php" },
-            { name: "SRF 2 Switzerland", category: "sport", url: "https://antenasport.org/srf2.php" },
-            { name: "RTS 2 Deux Switzerland", category: "sport", url: "https://antenasport.org/rts2deux.php" },
-            { name: "ARD Germany", category: "sport", url: "https://antenasport.org/ard.php" },
-            { name: "ZDF Germany", category: "sport", url: "https://antenasport.org/zdf.php" },
-            { name: "ORF 1 Austria", category: "sport", url: "https://antenasport.org/orf1.php" },
-            { name: "Benfica TV", category: "football", url: "https://antenasport.org/benficatv.php" },
-            { name: "DAZN 1 PT", category: "sport", url: "https://antenasport.org/dazn1pt.php" },
-            { name: "DAZN 2 PT", category: "sport", url: "https://antenasport.org/dazn2pt.php" },
-            { name: "DAZN 3 PT", category: "sport", url: "https://antenasport.org/dazn3pt.php" },
-            { name: "DAZN 4 PT", category: "sport", url: "https://antenasport.org/dazn4pt.php" },
-            { name: "DAZN 5 PT", category: "sport", url: "https://antenasport.org/dazn5pt.php" },
-            { name: "DAZN 6 PT", category: "sport", url: "https://antenasport.org/dazn6pt.php" },
-            { name: "DAZN 1 FR", category: "sport", url: "https://antenasport.org/dazn1fr.php" },
-            { name: "DAZN 1 Belgium", category: "sport", url: "https://antenasport.org/dazn1eleven.php" },
-            { name: "DAZN 1 DE", category: "sport", url: "https://antenasport.org/dazn1de.php" },
-            { name: "DAZN 2 DE", category: "sport", url: "https://antenasport.org/dazn2de.php" },
-            { name: "DAZN 1 Spain", category: "sport", url: "https://antenasport.org/dazn1.php" },
-            { name: "DAZN 2 Spain", category: "sport", url: "https://antenasport.org/dazn2.php" },
-            { name: "DAZN 3 Spain", category: "sport", url: "https://antenasport.org/dazn3.php" },
-            { name: "DAZN 4 Spain", category: "sport", url: "https://antenasport.org/dazn4.php" },
-            { name: "Sky Sports Formula 1 UK", category: "sport", url: "https://antenasport.org/skyf1.php" },
-            { name: "DAZN Formula 1 Spain", category: "sport", url: "https://antenasport.org/daznf1.php" },
-            { name: "Megogo Sport Ukraine", category: "sport", url: "https://antenasport.org/megogosport.php" },
-            { name: "Megogo Futbol 1 Ukraine", category: "football", url: "https://antenasport.org/megogosport1.php" },
-            { name: "Movistar Deportes 1", category: "sport", url: "https://antenasport.org/movistar1.php" },
-            { name: "Movistar Deportes 2", category: "sport", url: "https://antenasport.org/movistar2.php" },
-            { name: "Movistar Deportes 3", category: "sport", url: "https://antenasport.org/movistar3.php" },
-            { name: "Movistar Deportes 4", category: "sport", url: "https://antenasport.org/movistar4.php" },
-            { name: "Fox Soccer Plus USA", category: "football", url: "https://antenasport.org/foxsoccerplus.php" },
-            { name: "Fox Deportes USA", category: "football", url: "https://antenasport.org/foxdeportes.php" },
-            { name: "CBS Sports Network", category: "sport", url: "https://antenasport.org/cbssports.php" },
-            { name: "USA Network", category: "sport", url: "https://antenasport.org/usa.php" },
-            { name: "NBC", category: "sport", url: "https://antenasport.org/nbc.php" },
-            { name: "CNBC", category: "sport", url: "https://antenasport.org/cnbc.php" },
-            { name: "NBC UNIVERSO", category: "sport", url: "https://antenasport.org/nbcuniverso.php" },
-            { name: "TELEMUNDO", category: "sport", url: "https://antenasport.org/telemundo.php" },
-            { name: "TNT USA", category: "sport", url: "https://antenasport.org/tnt.php" },
-            { name: "ABC USA", category: "sport", url: "https://antenasport.org/abc.php" },
-            { name: "YES USA", category: "sport", url: "https://antenasport.org/yes.php" },
-            { name: "Altitude USA", category: "sport", url: "https://antenasport.org/altitude.php" },
-            { name: "ESPN USA", category: "sport", url: "https://antenasport.org/espn.php" },
-            { name: "ESPN 2 USA", category: "sport", url: "https://antenasport.org/espn2.php" },
-            { name: "ESPN Deportes USA", category: "sport", url: "https://antenasport.org/espndeportes.php" },
-            { name: "Fox Sports 1 USA", category: "sport", url: "https://antenasport.org/fox1.php" },
-            { name: "Fox Sports 2 USA", category: "sport", url: "https://antenasport.org/fox2.php" },
-            { name: "BeinSport USA", category: "sport", url: "https://antenasport.org/beinsportusa.php" },
-            { name: "BeinSport USA Espanyol", category: "sport", url: "https://antenasport.org/beinsportusaes.php" },
-            { name: "Sportsnet One", category: "sport", url: "https://antenasport.org/sportsnetone.php" },
-            { name: "Sportsnet Ontario", category: "sport", url: "https://antenasport.org/sportnetontario.php" },
-            { name: "Sportsnet Pacific", category: "sport", url: "https://antenasport.org/sportsnetpacific.php" },
-            { name: "Sportdigital Fussball Germany", category: "football", url: "https://antenasport.org/sportdigital.php" },
-            { name: "Sportklub Serbia", category: "sport", url: "https://antenasport.org/sportklub.php" },
-            { name: "Sportklub 1 Serbia", category: "sport", url: "https://antenasport.org/sportklub1.php" },
-            { name: "Sportklub 2 Serbia", category: "sport", url: "https://antenasport.org/sportklub2.php" },
-            { name: "Sportklub 3 Serbia", category: "sport", url: "https://antenasport.org/sportklub3.php" },
-            { name: "Sportklub 4 Serbia", category: "sport", url: "https://antenasport.org/sportklub4.php" },
-            { name: "Arena Sport 1 Serbia", category: "sport", url: "https://antenasport.org/arenasport1sr.php" },
-            { name: "Arena Sport 2 Serbia", category: "sport", url: "https://antenasport.org/arenasport2sr.php" },
-            { name: "Arena Sport 3 Serbia", category: "sport", url: "https://antenasport.org/arenasport3sr.php" },
-            { name: "Arena Sport 4 Serbia", category: "sport", url: "https://antenasport.org/arenasport4sr.php" },
-            { name: "Arena Sport 5 Serbia", category: "sport", url: "https://antenasport.org/arenasport5sr.php" },
-            { name: "Arena Sport 6 Serbia", category: "sport", url: "https://antenasport.org/arenasport6sr.php" },
-            { name: "Arena Sport 7 Serbia", category: "sport", url: "https://antenasport.org/arenasport7sr.php" },
-            { name: "Arena Sport 8 Serbia", category: "sport", url: "https://antenasport.org/arenasport8sr.php" },
-            { name: "Arena Sport 9 Serbia", category: "sport", url: "https://antenasport.org/arenasport9sr.php" },
-            { name: "Arena Sport 10 Serbia", category: "sport", url: "https://antenasport.org/arenasport10sr.php" },
-            { name: "Arena Sport 1 Croatia", category: "sport", url: "https://antenasport.org/arenasport1hr.php" },
-            { name: "Arena Sport 2 Croatia", category: "sport", url: "https://antenasport.org/arenasport2hr.php" },
-            { name: "Arena Sport 3 Croatia", category: "sport", url: "https://antenasport.org/arenasport3hr.php" },
-            { name: "Arena Sport 4 Croatia", category: "sport", url: "https://antenasport.org/arenasport4hr.php" },
-            { name: "Arena Sport 5 Croatia", category: "sport", url: "https://antenasport.org/arenasport5hr.php" },
-            { name: "Arena Sport 6 Croatia", category: "sport", url: "https://antenasport.org/arenasport6hr.php" },
-            { name: "Arena Sport 7 Croatia", category: "sport", url: "https://antenasport.org/arenasport7hr.php" },
-            { name: "Arena Sport 8 Croatia", category: "sport", url: "https://antenasport.org/arenasport8hr.php" },
-            { name: "Arena Sport 9 Croatia", category: "sport", url: "https://antenasport.org/arenasport9hr.php" },
-            { name: "Arena Sport 10 Croatia", category: "sport", url: "https://antenasport.org/arenasport10hr.php" },
-            { name: "Arena Sport 1 Premium Bosnia", category: "sport", url: "https://antenasport.org/arena1premiumbosnia.php" },
-            { name: "Arena Sport 2 Premium Bosnia", category: "sport", url: "https://antenasport.org/arena2premiumbosnia.php" },
-            { name: "Arena Sport 3 Premium Bosnia", category: "sport", url: "https://antenasport.org/arena3premiumbosnia.php" },
-            { name: "Arena Sport 1 Premium Serbia", category: "sport", url: "https://antenasport.org/arena1premiumserbia.php" },
-            { name: "Arena Sport 2 Premium Serbia", category: "sport", url: "https://antenasport.org/arena2premiumserbia.php" },
-            { name: "Arena Sport 3 Premium Serbia", category: "sport", url: "https://antenasport.org/arena3premiumserbia.php" },
-            { name: "Arena Sport 1 Bosnia", category: "sport", url: "https://antenasport.org/arenasport1bh.php" },
-            { name: "Arena Sport 2 Bosnia", category: "sport", url: "https://antenasport.org/arenasport2bh.php" },
-            { name: "Arena Sport 3 Bosnia", category: "sport", url: "https://antenasport.org/arenasport3bh.php" },
-            { name: "Arena Sport 4 Bosnia", category: "sport", url: "https://antenasport.org/arenasport4bh.php" },
-            { name: "Arena Sport 5 Bosnia", category: "sport", url: "https://antenasport.org/arenasport5bh.php" },
-            { name: "Arena Sport 6 Bosnia", category: "sport", url: "https://antenasport.org/arenasport6bh.php" },
-            { name: "SkyTennis UK", category: "tennis", url: "https://antenasport.org/skytennisuk.php" },
-            { name: "SkyTennis Italy", category: "tennis", url: "https://antenasport.org/skytennisit.php" },
-            { name: "SkyTennis Germany", category: "tennis", url: "https://antenasport.org/skytennisde.php" },
-            { name: "SkyTop Event Germany", category: "sport", url: "https://antenasport.org/skytopeventde.php" },
-            { name: "Tennis TV USA", category: "tennis", url: "https://antenasport.org/tennistv1.php" },
-            { name: "Canal Plus France", category: "sport", url: "https://antenasport.org/canalplusfr.php" },
-            { name: "Canal Sport France", category: "sport", url: "https://antenasport.org/canalsportfr.php" },
-            { name: "Canal 360 France", category: "sport", url: "https://antenasport.org/canal360fr.php" },
-            { name: "Canal Foot France", category: "football", url: "https://antenasport.org/canalfootfr.php" },
-            { name: "L'Equipe TV France", category: "sport", url: "https://antenasport.org/lequipetv.php" },
-            { name: "Beinsport 1 France", category: "sport", url: "https://antenasport.org/bein1fr.php" },
-            { name: "Beinsport 2 France", category: "sport", url: "https://antenasport.org/bein2fr.php" },
-            { name: "Beinsport 3 France", category: "sport", url: "https://antenasport.org/bein3fr.php" },
-            { name: "Sky Sports Main Event", category: "sport", url: "https://antenasport.org/skymain.php" },
-            { name: "Sky Sports Football", category: "football", url: "https://antenasport.org/skyfootball.php" },
-            { name: "Sky Sports Action NFL", category: "sport", url: "https://antenasport.org/skyaction.php" },
-            { name: "Sky Sports Arena", category: "sport", url: "https://antenasport.org/skyarena.php" },
-            { name: "Sky Sports Golf", category: "sport", url: "https://antenasport.org/skygolf.php" },
-            { name: "Sky Sports Cricket", category: "sport", url: "https://antenasport.org/skycricket.php" },
-            { name: "Sport TV 1 Portugal", category: "sport", url: "https://antenasport.org/sport1pt.php" },
-            { name: "Sport TV 2 Portugal", category: "sport", url: "https://antenasport.org/sport2pt.php" },
-            { name: "Sport TV 3 Portugal", category: "sport", url: "https://antenasport.org/sport3pt.php" },
-            { name: "Sport TV 4 Portugal", category: "sport", url: "https://antenasport.org/sport4pt.php" },
-            { name: "Sport TV 5 Portugal", category: "sport", url: "https://antenasport.org/sport5pt.php" },
-            { name: "Sport TV 6 Portugal", category: "sport", url: "https://antenasport.org/sport6pt.php" },
-            { name: "Sport TV 7 Portugal", category: "sport", url: "https://antenasport.org/sport7pt.php" },
-            { name: "NBA TV USA", category: "basketball", url: "https://antenasport.org/nba.php" },
-            { name: "SuspilneTV Ukraine", category: "sport", url: "https://antenasport.org/suspilnetv.php" },
-            { name: "Suspilne Sport Ukraine", category: "sport", url: "https://antenasport.org/suspilnesport.php" },
-            { name: "VipSport 1 Ukraine", category: "sport", url: "https://antenasport.org/vipsport1.php" },
-            { name: "VipSport 2 Ukraine", category: "sport", url: "https://antenasport.org/vipsport2.php" },
-            { name: "VipSport 3 Ukraine", category: "sport", url: "https://antenasport.org/vipsport3.php" },
-            { name: "VipSport 4 Ukraine", category: "sport", url: "https://antenasport.org/vipsport4.php" },
-            { name: "VipSport 5 Ukraine", category: "sport", url: "https://antenasport.org/vipsport5.php" },
-            { name: "VipSport 6 Ukraine", category: "sport", url: "https://antenasport.org/vipsport6.php" },
-            { name: "VipSport 7 Ukraine", category: "sport", url: "https://antenasport.org/vipsport7.php" },
-            { name: "VipSport 8 Ukraine", category: "sport", url: "https://antenasport.org/vipsport8.php" },
-            { name: "VipSport 9 Ukraine", category: "sport", url: "https://antenasport.org/vipsport9.php" },
-            { name: "VipSport 10 Ukraine", category: "sport", url: "https://antenasport.org/vipsport10.php" },
-            { name: "VipSport 11 Ukraine", category: "sport", url: "https://antenasport.org/vipsport11.php" },
-            { name: "VipSport 12 Ukraine", category: "sport", url: "https://antenasport.org/vipsport12.php" },
-            { name: "VipSport 13 Ukraine", category: "sport", url: "https://antenasport.org/vipsport13.php" },
-            { name: "Antenasport 1", category: "sport", url: "https://antenasport.org/hd1.php" },
-            { name: "Antenasport 2", category: "sport", url: "https://antenasport.org/hd2.php" },
-            { name: "Antenasport 3", category: "sport", url: "https://antenasport.org/hd3.php" },
-            { name: "Antenasport 4", category: "sport", url: "https://antenasport.org/hd4.php" },
-            { name: "Antenasport 5", category: "sport", url: "https://antenasport.org/hd5.php" },
-            { name: "Antenasport 6", category: "sport", url: "https://antenasport.org/hd6.php" },
-            { name: "Antenasport 7", category: "sport", url: "https://antenasport.org/hd7.php" },
-            { name: "Antenasport 8", category: "sport", url: "https://antenasport.org/hd8.php" },
-            { name: "Antenasport 9", category: "sport", url: "https://antenasport.org/hd9.php" },
-            { name: "Antenasport 10", category: "sport", url: "https://antenasport.org/hd10.php" },
-            { name: "Antenasport 11", category: "sport", url: "https://antenasport.org/hd11.php" },
-            { name: "Digisport 1 Romania HD", category: "sport", url: "https://antenasport.org/digisport1.php" },
-            { name: "Digisport 2 Romania HD", category: "sport", url: "https://antenasport.org/digisport2.php" },
-            { name: "Digisport 3 Romania HD", category: "sport", url: "https://antenasport.org/digisport3.php" },
-            { name: "Digisport 4 Romania HD", category: "sport", url: "https://antenasport.org/digisport4.php" },
-            { name: "Primasport 1 Romania HD", category: "sport", url: "https://antenasport.org/primasport1.php" },
-            { name: "Primasport 2 Romania HD", category: "sport", url: "https://antenasport.org/primasport2.php" },
-            { name: "Primasport 3 Romania HD", category: "sport", url: "https://antenasport.org/primasport3.php" },
-            { name: "Primasport 4 Romania HD", category: "sport", url: "https://antenasport.org/primasport4.php" },
-            { name: "Primasport 5 Romania HD", category: "sport", url: "https://antenasport.org/primasport5.php" },
-            { name: "ProTV Romania HD", category: "sport", url: "https://antenasport.org/protv.php" },
-            { name: "Pro Arena Romania HD", category: "sport", url: "https://antenasport.org/proarena.php" },
-            { name: "Antena 3 Romania HD", category: "sport", url: "https://antenasport.org/antena3.php" },
-            { name: "Antena 1 Romania HD", category: "sport", url: "https://antenasport.org/antena1.php" },
-            { name: "Prima TV Romania HD", category: "sport", url: "https://antenasport.org/primatv.php" },
-            { name: "TVR Sport Romania HD", category: "sport", url: "https://antenasport.org/tvrsport.php" },
-            { name: "TVR 1 Romania HD", category: "sport", url: "https://antenasport.org/tvr1.php" },
-            { name: "TVR 2 Romania HD", category: "sport", url: "https://antenasport.org/tvr2.php" },
-            { name: "Eurosport 1 RO HD", category: "sport", url: "https://antenasport.org/eurosport1ro.php" },
-            { name: "Eurosport 2 RO HD", category: "sport", url: "https://antenasport.org/eurosport2ro.php" },
-            { name: "Eurosport 1 FR HD", category: "sport", url: "https://antenasport.org/eurosport1fr.php" },
-            { name: "Eurosport 2 FR HD", category: "sport", url: "https://antenasport.org/eurosport2fr.php" }
-        ];
-
-        // Show alert when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            const modal = document.getElementById('alertModal');
-            const closeModalBtn = document.getElementById('closeModal');
-            const acceptBtn = document.getElementById('acceptBtn');
-            const channelsGrid = document.getElementById('channelsGrid');
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            const searchInput = document.getElementById('searchInput');
-            const videoContainer = document.getElementById('videoContainer');
-            const videoIframe = document.getElementById('videoIframe');
-            const videoTitle = document.getElementById('videoTitle');
-            const closeVideoBtn = document.getElementById('closeVideoBtn');
-            
-            // Show modal
-            modal.style.display = 'flex';
-            
-            // Close modal functions
-            function closeModal() {
-                modal.style.display = 'none';
-            }
-            
-            closeModalBtn.addEventListener('click', closeModal);
-            acceptBtn.addEventListener('click', closeModal);
-            
-            // Close if user clicks outside modal
-            modal.addEventListener('click', function(e) {
-                if (e.target === modal) {
-                    closeModal();
-                }
-            });
-            
-            // Close video modal
-            closeVideoBtn.addEventListener('click', function() {
-                videoContainer.classList.remove('active');
-                videoIframe.src = '';
-            });
-            
-            // Render channels
-            function renderChannels(filter = 'all', searchTerm = '') {
-                channelsGrid.innerHTML = '';
-                
-                let filteredChannels = channels;
-                
-                // Apply category filter
-                if (filter !== 'all') {
-                    filteredChannels = channels.filter(channel => channel.category === filter);
-                }
-                
-                // Apply search filter
-                if (searchTerm) {
-                    filteredChannels = filteredChannels.filter(channel => 
-                        channel.name.toLowerCase().includes(searchTerm.toLowerCase())
-                    );
-                }
-                
-                // Create channel cards
-                filteredChannels.forEach(channel => {
-                    const channelCard = document.createElement('div');
-                    channelCard.className = 'channel-card';
-                    
-                    // Determine category class for styling
-                    let categoryClass = '';
-                    let emoji = '📺';
-                    switch(channel.category) {
-                        case 'football':
-                            categoryClass = 'category-football';
-                            emoji = '⚽';
-                            break;
-                        case 'basketball':
-                            categoryClass = 'category-basketball';
-                            emoji = '🏀';
-                            break;
-                        case 'tennis':
-                            categoryClass = 'category-tennis';
-                            emoji = '🎾';
-                            break;
-                        default:
-                            categoryClass = 'category-sport';
-                            emoji = '🏆';
-                    }
-                    
-                    channelCard.innerHTML = `
-                        <div class="channel-icon ${categoryClass}">
-                            ${channel.name}
-                        </div>
-                        <div class="channel-info">
-                            <div class="channel-category">${channel.category.toUpperCase()} ${emoji}</div>
-                            <h3 class="channel-title">${channel.name}</h3>
-                            <button class="watch-btn play-btn" data-url="${channel.url}" data-title="${channel.name}">Watch Now ▶️</button>
-                        </div>
-                    `;
-                    
-                    channelsGrid.appendChild(channelCard);
-                });
-                
-                // Add event listeners to play buttons
-                document.querySelectorAll('.play-btn').forEach(button => {
-                    button.addEventListener('click', function() {
-                        const url = this.getAttribute('data-url');
-                        const title = this.getAttribute('data-title');
-                        
-                        videoTitle.textContent = title;
-                        videoIframe.src = url;
-                        videoContainer.classList.add('active');
-                        
-                        // If it's a vidembed URL, we need to handle it differently
-                        if (url.includes('vidembed')) {
-                            videoIframe.src = url;
-                        } else {
-                            // For other URLs, try to embed them directly
-                            videoIframe.src = url;
-                        }
-                    });
-                });
-            }
-            
-            // Initial render
-            renderChannels();
-            
-            // Filter functionality
-            filterButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                    const filter = this.getAttribute('data-filter');
-                    const searchTerm = searchInput.value;
-                    renderChannels(filter, searchTerm);
-                });
-            });
-            
-            // Search functionality
-            searchInput.addEventListener('input', function() {
-                const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
-                const searchTerm = this.value;
-                renderChannels(activeFilter, searchTerm);
-            });
-        });
-    </script>
+    </div>
 </body>
 </html>
+
