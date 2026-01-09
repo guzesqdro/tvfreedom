@@ -1,5 +1,4 @@
-# 📺 TVFreedom – Live Sports Streaming in 4K ⚽🏀🎾🏆
-
+# 📺 TVFreedom – Live Sports Streaming in 4K
 **TVFreedom** 🌐 is a modern platform for streaming **live sports channels** from around the world 🌍, completely free 🎉.  
 👉 Visit here: [guzesqdro.github.io/tvfreedom](https://guzesqdro.github.io/tvfreedom    )  
 
