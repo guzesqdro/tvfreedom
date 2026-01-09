@@ -1,0 +1,1598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TVFreedom 📼⚽️</title>
+    <style>
+        :root {
+            --primary: #0c0c1d;
+            --secondary: #1a1a3a;
+            --accent: #ff3366;
+            --text: #ffffff;
+            --text-secondary: #cccccc;
+            --success: #00cc66;
+            --warning: #ffcc00;
+            --sport-color: #3399ff;
+            --server2-color: #ff9933;
+            --server1-color: #66cc66;
+            --tennis-color: #9966cc;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: #0c0c1d;
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Animated background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .bg-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.3;
+            animation: float 15s ease-in-out infinite;
+        }
+        
+        .shape1 {
+            width: 400px;
+            height: 400px;
+            background: #ff3366;
+            top: -100px;
+            left: -100px;
+            animation-delay: 0s;
+        }
+        
+        .shape2 {
+            width: 300px;
+            height: 300px;
+            background: #3399ff;
+            bottom: -50px;
+            right: -50px;
+            animation-delay: 2s;
+        }
+        
+        .shape3 {
+            width: 200px;
+            height: 200px;
+            background: #6633ff;
+            bottom: 30%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+        
+        .shape4 {
+            width: 350px;
+            height: 350px;
+            background: #ff9933;
+            top: 40%;
+            right: 10%;
+            animation-delay: 6s;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(20px, 20px) rotate(90deg);
+            }
+            50% {
+                transform: translate(0, 40px) rotate(180deg);
+            }
+            75% {
+                transform: translate(-20px, 20px) rotate(270deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(360deg);
+            }
+        }
+        
+        header {
+            background: rgba(12, 12, 29, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .container {
+            width: 95%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--accent), #ff6699);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+        
+        .logo span {
+            color: var(--text);
+            -webkit-text-fill-color: var(--text);
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-item {
+            margin-left: 2.5rem;
+        }
+        
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            background: rgba(255, 51, 102, 0.2);
+            color: var(--accent);
+        }
+        
+        .nav-link.active {
+            box-shadow: 0 0 15px rgba(255, 51, 102, 0.4);
+        }
+        
+        .hero {
+            padding: 5rem 0;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, var(--accent), #ff99cc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        
+        .live-section {
+            padding: 3rem 0;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 70px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .channels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .channel-card {
+            background: rgba(26, 26, 58, 0.7);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+        
+        .channel-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(255, 51, 102, 0.3);
+        }
+        
+        .channel-icon {
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, var(--secondary), #2a2a4a);
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 1rem;
+            color: var(--text);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .channel-info {
+            padding: 1.5rem;
+        }
+        
+        .channel-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .channel-category {
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .watch-btn {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--accent), #ff6699);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 15px rgba(255, 51, 102, 0.4);
+            width: 100%;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .watch-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 51, 102, 0.6);
+        }
+        
+        .category-sport {
+            background: linear-gradient(45deg, var(--sport-color), #66aaff);
+        }
+        
+        .category-server2 {
+            background: linear-gradient(45deg, var(--server2-color), #ff0000);
+        }
+
+        .category-server3 {
+            background: linear-gradient(45deg, var(--server1-color), #ff00b3);
+        }
+
+        .category-server1 {
+            background: linear-gradient(45deg, var(--server1-color), #2414ff);
+        }
+        
+        .category-tennis {
+            background: linear-gradient(45deg, var(--tennis-color), #bb99dd);
+        }
+        
+        .filter-section {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--accent);
+            color: white;
+        }
+        
+        .search-box {
+            max-width: 500px;
+            margin: 2rem auto;
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 20px rgba(255, 51, 102, 0.3);
+        }
+        
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .video-container.active {
+            display: flex;
+        }
+        
+        .close-video {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 2001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .video-wrapper {
+            width: 100%;
+            max-width: 1200px;
+            height: 80vh;
+            position: relative;
+        }
+        
+        .video-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 10px;
+        }
+        
+        .video-title {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            z-index: 2001;
+        }
+        
+        footer {
+            background: rgba(12, 12, 29, 0.95);
+            padding: 3rem 0 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 10;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, var(--accent), #ff6699);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+            gap: 2rem;
+        }
+        
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+        
+        .footer-link:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 2rem;
+            max-width: 800px;
+            line-height: 1.6;
+        }
+        
+        /* Alert Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal {
+            background: rgba(26, 26, 58, 0.98);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            width: 90%;
+            max-width: 650px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: slideUp 0.5s ease;
+            position: relative;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .modal-title {
+            font-size: 1.8rem;
+            color: var(--warning);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border-bottom: 2px solid rgba(255, 204, 0, 0.3);
+            padding-bottom: 1rem;
+        }
+        
+        .modal-content {
+            color: var(--text);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .important-notice {
+            background: rgba(255, 204, 0, 0.1);
+            border: 1px solid rgba(255, 204, 0, 0.3);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            color: var(--warning);
+        }
+        
+        .modal-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+        
+        .modal-list li {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 1rem;
+            background: rgba(255, 51, 102, 0.1);
+            border-radius: 10px;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .modal-list li::before {
+            content: "🔹";
+            font-size: 1.2rem;
+            margin-right: 5px;
+            color: var(--accent);
+        }
+        
+        .modal-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .modal-link {
+            background: linear-gradient(45deg, var(--accent), #ff6699);
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-size: 1.1rem;
+        }
+        
+        .modal-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(255, 51, 102, 0.4);
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .close-btn:hover {
+            background: rgba(255, 51, 102, 0.3);
+            transform: rotate(90deg);
+        }
+        
+        .warning-text {
+            color: var(--warning);
+            font-weight: 700;
+            margin: 1rem 0;
+            font-size: 1.2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .channels-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-item {
+                margin-left: 1.5rem;
+            }
+            
+            .channel-icon {
+                height: 120px;
+                font-size: 1rem;
+            }
+            
+            .filter-buttons {
+                gap: 0.5rem;
+            }
+            
+            .filter-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .video-wrapper {
+                height: 70vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="bg-shape shape1"></div>
+        <div class="bg-shape shape2"></div>
+        <div class="bg-shape shape3"></div>
+        <div class="bg-shape shape4"></div>
+    </div>
+
+    <!-- Alert Modal -->
+    <div class="modal-overlay" id="alertModal" style="display: none;">
+        <div class="modal">
+            <button class="close-btn" id="closeModal">&times;</button>
+            <h2 class="modal-title">⚠️ IMPORTANT NOTICE ⚠️</h2>
+            <div class="modal-content">
+                <p>To ensure optimal viewing experience on CintaGol, you must follow these security recommendations:</p>
+                
+                <div class="important-notice">
+                    <strong>TVFreedom Policy:</strong> Any website that is not ours should not accept or display advertisements. 
+                    For your protection and to ensure uninterrupted streaming, we require all users to install the recommended tools.
+                </div>
+                
+                <ul class="modal-list">
+                    <li>
+                        <strong>Install uBlock Origin</strong> - A powerful ad blocker that will prevent unwanted ads and trackers from interfering with your streaming experience.
+                    </li>
+                    <li>
+                        <strong>Use 1.1.1.1 DNS (ONLY IF DOESNT WORK!)</strong> - A faster, safer, and more private way to browse the internet that will improve your streaming quality.
+                
+                <p class="warning-text">⚠️ WARNING: If you don't install these tools, you may not be able to view matches correctly!</p>
+                <p class="warning-text">💻 WARNING: We are not responsable if you are bombed with ads because you didnt go step by step!
+                <p class="warning-text">🧪 WARNING: Please if you have problems contact my via instagram: <a href="https://instagram.com/guzesqdro" target="_blank">@guzesqdro</a></p>
+ <p class="warning-text">⚠️ WARNING: If you don't install these tools, you will not be able to watch the streaming correctly.</p>
+                </p>
+            </div>
+            
+            <div class="modal-links">
+                <a href="https://chromewebstore.google.com/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm" target="_blank" class="modal-link">Download uBlock Origin for Chrome</a>
+                <a href="https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/" target="_blank" class="modal-link">Download uBlock Origin for Firefox</a>
+                <a href="https://one.one.one.one/" target="_blank" class="modal-link">Setup 1.1.1.1 DNS by Cloudflare</a>
+            </div>
+            
+            <button class="watch-btn" id="acceptBtn">I understand and have installed the required tools 🥳</button>
+        </div>
+    </div>
+
+    <!-- Video Player Modal -->
+    <div class="video-container" id="videoContainer">
+        <button class="close-video" id="closeVideoBtn">&times;</button>
+        <h2 class="video-title" id="videoTitle">Loading Stream...</h2>
+        <div class="video-wrapper">
+            <iframe class="video-iframe" id="videoIframe" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <header>
+        <div class="container">
+            <nav class="nav-container">
+                <a href="#" class="logo">TV<span>Freedom</span></a>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active">Live TV</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>TVFreedom Live TV</h1>
+            <p>Experience the excitement of live sports with our premium streaming service. Watch football, basketball, tennis, and more in 4K completely free and ad-free.</p>
+             <div class="important-notice">
+                    <strong>IMPORTANT:</strong> If you are watching our streams and a pop-up or a new windows close it at the instant.
+                    There are 🔞 websites and scam websites! You will need to dissable <strong>ANY ad-block</strong> because then the TV will not charge.
+                </div>
+            <p class="warning-text">🧪 NOTICE: If you have any problems with TVFreedom, contact me via Instagram <a href="https://instagram.com/guzesqdro" target="_blank">@guzesqdro</a></p>
+            <p class="warning-text">💻 NOTICE: If you find any channels down, we will restore them within 24 hours!</p>
+            <p class="warning-text">☁️ NOTICE: If you're having trouble streaming TVFreedom, don't forget to install version 1.1.1.1</p>
+            <a href="https://one.one.one.one/" target="_blank" class="modal-link">DNS Installer 1.1.1.1 by Cloudflare</a>
+        </section>
+
+        <div class="container">
+            <section class="live-section">
+                <div class="filter-section">
+                    <h2 class="section-title">All the channels</h2>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">All 📺</button>
+                        <button class="filter-btn" data-filter="server1">Server 1️⃣</button>
+                        <button class="filter-btn" data-filter="server2">Server 2️⃣</button>
+                        <button class="filter-btn" data-filter="server3">Server 3️⃣</button>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="search-box">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Search here your channel...">
+                </div>
+            <p class="warning-text">
+                💸 <strong>ATTENTION:</strong> From the last 3 months this website had more than 16,000 visits! From there some people are cathing our servers,
+                the only official domains are: <strong>guzesqdro.github.io/cintagol, guzesqdro.github.io/tvfreedom, guzesqdro.dev<strong> Thank you from guzesqdro ❤️
+            </p>
+                <div class="channels-grid" id="channelsGrid">
+                    <!-- Channels will be dynamically inserted here -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">guzesqdro.github.io/tvfreedom</div>
+                <p class="copyright">
+                    &copy; © 2026 TVFreedom 🎉⚽🏀🎾🏆 All rights reserved. This service is offered for personal use only. TVFreedom respects all copyright laws and only retransmits content for which we have the proper authorization.
+Hosted at guzesqdro.github.io/tvfreedom 🌐
+                </p>
+                <p class="copyright">
+                    <strong>Notice:</strong> We require all users to install 1.1.1.1 DNS 🌩️ for an optimal streaming experience.
+                </p>
+                 </p>      </p>
+                <p class="copyright">
+                    Made with ❤️ by <a href="https://instagram.com/guzesqdro" target="_blank">@guzesqdro</a></p>
+                
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Channel data with URLs
+        const channels = [
+  { name: "BeIN 1", category: "server1", url: "https://bolaloca.my/player/3/1  " },
+  { name: "BeIN 2", category: "server1", url: "https://bolaloca.my/player/3/2  " },
+  { name: "BeIN 3", category: "server1", url: "https://bolaloca.my/player/3/3  " },
+  { name: "BeIN Max 4", category: "server1", url: "https://bolaloca.my/player/3/4  " },
+  { name: "BeIN Max 5", category: "server1", url: "https://bolaloca.my/player/3/5  " },
+  { name: "BeIN Max 6", category: "server1", url: "https://bolaloca.my/player/3/6  " },
+  { name: "BeIN Max 7", category: "server1", url: "https://bolaloca.my/player/3/7  " },
+  { name: "BeIN Max 8", category: "server1", url: "https://bolaloca.my/player/3/8  " },
+  { name: "BeIN Max 9", category: "server1", url: "https://bolaloca.my/player/3/9  " },
+  { name: "BeIN Max 10", category: "server1", url: "https://bolaloca.my/player/3/10  " },
+  { name: "Canal+", category: "server1", url: "https://bolaloca.my/player/3/11  " },
+  { name: "Canal+ Foot", category: "server1", url: "https://bolaloca.my/player/3/12  " },
+  { name: "Canal+ Sport", category: "server1", url: "https://bolaloca.my/player/3/13  " },
+  { name: "Canal+ Sport360", category: "server1", url: "https://bolaloca.my/player/3/14  " },
+  { name: "Eurosport1", category: "server1", url: "https://bolaloca.my/player/3/15  " },
+  { name: "Eurosport2", category: "server1", url: "https://bolaloca.my/player/3/16  " },
+  { name: "RMC Sport1", category: "server1", url: "https://bolaloca.my/player/3/17  " },
+  { name: "RMC Sport2", category: "server1", url: "https://bolaloca.my/player/3/18  " },
+  { name: "Equipe", category: "server1", url: "https://bolaloca.my/player/3/19  " },
+  { name: "Ligue 1 FR", category: "server1", url: "https://bolaloca.my/player/3/20  " },
+  { name: "Ligue 1 FR", category: "server1", url: "https://bolaloca.my/player/3/21  " },
+  { name: "Ligue 1 FR", category: "server1", url: "https://bolaloca.my/player/3/22  " },
+  { name: "Automoto", category: "server1", url: "https://bolaloca.my/player/3/23  " },
+  { name: "TF1", category: "server1", url: "https://bolaloca.my/player/3/24  " },
+  { name: "TMC", category: "server1", url: "https://bolaloca.my/player/3/25  " },
+  { name: "M6", category: "server1", url: "https://bolaloca.my/player/3/26  " },
+  { name: "W9", category: "server1", url: "https://bolaloca.my/player/3/27  " },
+  { name: "France2", category: "server1", url: "https://bolaloca.my/player/3/28  " },
+  { name: "France3", category: "server1", url: "https://bolaloca.my/player/3/29  " },
+  { name: "France4", category: "server1", url: "https://bolaloca.my/player/3/30  " },
+  { name: "C+Live 1", category: "server1", url: "https://bolaloca.my/player/3/31  " },
+  { name: "C+Live 2", category: "server1", url: "https://bolaloca.my/player/3/32  " },
+  { name: "C+Live 3", category: "server1", url: "https://bolaloca.my/player/3/33  " },
+  { name: "C+Live 4", category: "server1", url: "https://bolaloca.my/player/3/34  " },
+  { name: "C+Live 5", category: "server1", url: "https://bolaloca.my/player/3/35  " },
+  { name: "C+Live 6", category: "server1", url: "https://bolaloca.my/player/3/36  " },
+  { name: "C+Live 7", category: "server1", url: "https://bolaloca.my/player/3/37  " },
+  { name: "C+Live 8", category: "server1", url: "https://bolaloca.my/player/3/38  " },
+  { name: "C+Live 9", category: "server1", url: "https://bolaloca.my/player/3/39  " },
+  { name: "C+Live 10", category: "server1", url: "https://bolaloca.my/player/3/40  " },
+  { name: "C+Live 11", category: "server1", url: "https://bolaloca.my/player/3/41  " },
+  { name: "C+Live 12", category: "server1", url: "https://bolaloca.my/player/3/42  " },
+  { name: "C+Live 13", category: "server1", url: "https://bolaloca.my/player/3/43  " },
+  { name: "C+Live 14", category: "server1", url: "https://bolaloca.my/player/3/44  " },
+  { name: "C+Live 15", category: "server1", url: "https://bolaloca.my/player/3/45  " },
+  { name: "C+Live 16", category: "server1", url: "https://bolaloca.my/player/3/46  " },
+  { name: "C+Live 17", category: "server1", url: "https://bolaloca.my/player/3/47  " },
+  { name: "C+Live 18", category: "server1", url: "https://bolaloca.my/player/3/48  " },
+  { name: "ES M.Laliga", category: "server1", url: "https://bolaloca.my/player/3/49  " },
+  { name: "ES M.Laliga2", category: "server1", url: "https://bolaloca.my/player/3/50  " },
+  { name: "ES DAZN Liga", category: "server1", url: "https://bolaloca.my/player/3/51  " },
+  { name: "ES DAZN Liga2", category: "server1", url: "https://bolaloca.my/player/3/52  " },
+  { name: "ES LALIGA Hypermotion", category: "server1", url: "https://bolaloca.my/player/3/53  " },
+  { name: "ES LALIGA Hypermotion2", category: "server1", url: "https://bolaloca.my/player/3/54  " },
+  { name: "ES Vamos", category: "server1", url: "https://bolaloca.my/player/3/55  " },
+  { name: "ES DAZN 1", category: "server1", url: "https://bolaloca.my/player/3/56  " },
+  { name: "ES DAZN 2", category: "server1", url: "https://bolaloca.my/player/3/57  " },
+  { name: "ES DAZN 3", category: "server1", url: "https://bolaloca.my/player/3/58  " },
+  { name: "ES DAZN 4", category: "server1", url: "https://bolaloca.my/player/3/59  " },
+  { name: "ES DAZN F1", category: "server1", url: "https://bolaloca.my/player/3/60  " },
+  { name: "ES M+ Liga de Campeones", category: "server1", url: "https://bolaloca.my/player/3/61  " },
+  { name: "ES M+ Deportes", category: "server1", url: "https://bolaloca.my/player/3/62  " },
+  { name: "ES M+ Deportes2", category: "server1", url: "https://bolaloca.my/player/3/63  " },
+  { name: "ES M+ Deportes3", category: "server1", url: "https://bolaloca.my/player/3/64  " },
+  { name: "ES M+ Deportes4", category: "server1", url: "https://bolaloca.my/player/3/65  " },
+  { name: "ES M+ Deportes5", category: "server1", url: "https://bolaloca.my/player/3/66  " },
+  { name: "ES M+ Deportes6", category: "server1", url: "https://bolaloca.my/player/3/67  " },
+  { name: "TUDN USA", category: "server1", url: "https://bolaloca.my/player/3/68  " },
+  { name: "BeIN En Español", category: "server1", url: "https://bolaloca.my/player/3/69  " },
+  { name: "FOX Deportes", category: "server1", url: "https://bolaloca.my/player/3/70  " },
+  { name: "ESPN Deportes", category: "server1", url: "https://bolaloca.my/player/3/71  " },
+  { name: "NBC Universo", category: "server1", url: "https://bolaloca.my/player/3/72  " },
+  { name: "Telemundo", category: "server1", url: "https://bolaloca.my/player/3/73  " },
+  { name: "GOL Español", category: "server1", url: "https://bolaloca.my/player/3/74  " },
+  { name: "TNT Sport Arg", category: "server1", url: "https://bolaloca.my/player/3/75  " },
+  { name: "ESPN Premium", category: "server1", url: "https://bolaloca.my/player/3/76  " },
+  { name: "TyC Sports", category: "server1", url: "https://bolaloca.my/player/3/77  " },
+  { name: "FOXsport1 Arg", category: "server1", url: "https://bolaloca.my/player/3/78  " },
+  { name: "FOXsport2 Arg", category: "server1", url: "https://bolaloca.my/player/3/79  " },
+  { name: "FOXsport3 Arg", category: "server1", url: "https://bolaloca.my/player/3/80  " },
+  { name: "WINsport+", category: "server1", url: "https://bolaloca.my/player/3/81  " },
+  { name: "WINsport", category: "server1", url: "https://bolaloca.my/player/3/82  " },
+  { name: "TNTCHILE Premium", category: "server1", url: "https://bolaloca.my/player/3/83  " },
+  { name: "Liga1MAX", category: "server1", url: "https://bolaloca.my/player/3/84  " },
+  { name: "GOLPERU", category: "server1", url: "https://bolaloca.my/player/3/85  " },
+  { name: "Zapping Sports", category: "server1", url: "https://bolaloca.my/player/3/86  " },
+  { name: "ESPN1", category: "server1", url: "https://bolaloca.my/player/3/87  " },
+  { name: "ESPN2", category: "server1", url: "https://bolaloca.my/player/3/88  " },
+  { name: "ESPN3", category: "server1", url: "https://bolaloca.my/player/3/89  " },
+  { name: "ESPN4", category: "server1", url: "https://bolaloca.my/player/3/90  " },
+  { name: "ESPN5", category: "server1", url: "https://bolaloca.my/player/3/91  " },
+  { name: "ESPN6", category: "server1", url: "https://bolaloca.my/player/3/92  " },
+  { name: "ESPN7", category: "server1", url: "https://bolaloca.my/player/3/93  " },
+  { name: "Directv", category: "server1", url: "https://bolaloca.my/player/3/94  " },
+  { name: "Directv2", category: "server1", url: "https://bolaloca.my/player/3/95  " },
+  { name: "Directv+", category: "server1", url: "https://bolaloca.my/player/3/96  " },
+  { name: "ESPN1MX", category: "server1", url: "https://bolaloca.my/player/3/97  " },
+  { name: "ESPN2MX", category: "server1", url: "https://bolaloca.my/player/3/98  " },
+  { name: "ESPN3MX", category: "server1", url: "https://bolaloca.my/player/3/99  " },
+  { name: "ESPN4MX", category: "server1", url: "https://bolaloca.my/player/3/100  " },
+  { name: "FOXsport1MX", category: "server1", url: "https://bolaloca.my/player/3/101  " },
+  { name: "FOXsport2MX", category: "server1", url: "https://bolaloca.my/player/3/102  " },
+  { name: "FOXsport3MX", category: "server1", url: "https://bolaloca.my/player/3/103  " },
+  { name: "FOX Sports Premium", category: "server1", url: "https://bolaloca.my/player/3/104  " },
+  { name: "TVC Deportes", category: "server1", url: "https://bolaloca.my/player/3/105  " },
+  { name: "TUDNMX", category: "server1", url: "https://bolaloca.my/player/3/106  " },
+  { name: "Canal5", category: "server1", url: "https://bolaloca.my/player/3/107  " },
+  { name: "Azteca 7", category: "server1", url: "https://bolaloca.my/player/3/108  " },
+  { name: "VTV Plus", category: "server1", url: "https://bolaloca.my/player/3/109  " },
+  { name: "DE Bundesliga10", category: "server1", url: "https://bolaloca.my/player/3/110  " },
+  { name: "DE Bundesliga1", category: "server1", url: "https://bolaloca.my/player/3/111  " },
+  { name: "DE Bundesliga2", category: "server1", url: "https://bolaloca.my/player/3/112  " },
+  { name: "DE Bundesliga3", category: "server1", url: "https://bolaloca.my/player/3/113  " },
+  { name: "DE Bundesliga4", category: "server1", url: "https://bolaloca.my/player/3/114  " },
+  { name: "DE Bundesliga5", category: "server1", url: "https://bolaloca.my/player/3/115  " },
+  { name: "DE Bundesliga6", category: "server1", url: "https://bolaloca.my/player/3/116  " },
+  { name: "DE Bundesliga7", category: "server1", url: "https://bolaloca.my/player/3/117  " },
+  { name: "DE Bundesliga8", category: "server1", url: "https://bolaloca.my/player/3/118  " },
+  { name: "DE Bundesliga9 Mix", category: "server1", url: "https://bolaloca.my/player/3/119  " },
+  { name: "DE Skyde PL", category: "server1", url: "https://bolaloca.my/player/3/120  " },
+  { name: "DE Skyde F1", category: "server1", url: "https://bolaloca.my/player/3/121  " },
+  { name: "DE Skyde Tennis", category: "server1", url: "https://bolaloca.my/player/3/122  " },
+  { name: "DE DAZN 1", category: "server1", url: "https://bolaloca.my/player/3/123  " },
+  { name: "DE DAZN 2", category: "server1", url: "https://bolaloca.my/player/3/124  " },
+  { name: "DE Sportdigital Fussball", category: "server1", url: "https://bolaloca.my/player/3/125  " },
+  { name: "UK TNT Sport", category: "server1", url: "https://bolaloca.my/player/3/126  " },
+  { name: "UK Sky Main", category: "server1", url: "https://bolaloca.my/player/3/127  " },
+  { name: "UK Sky Foot", category: "server1", url: "https://bolaloca.my/player/3/128  " },
+  { name: "UK EPL 3PM", category: "server1", url: "https://bolaloca.my/player/3/129  " },
+  { name: "UK EPL 3PM", category: "server1", url: "https://bolaloca.my/player/3/130  " },
+  { name: "UK EPL 3PM", category: "server1", url: "https://bolaloca.my/player/3/131  " },
+  { name: "UK EPL 3PM", category: "server1", url: "https://bolaloca.my/player/3/132  " },
+  { name: "UK EPL 3PM", category: "server1", url: "https://bolaloca.my/player/3/133  " },
+  { name: "UK F1", category: "server1", url: "https://bolaloca.my/player/3/134  " },
+  { name: "UK SPFL", category: "server1", url: "https://bolaloca.my/player/3/135  " },
+  { name: "UK SPFL", category: "server1", url: "https://bolaloca.my/player/3/136  " },
+  { name: "IT DAZN", category: "server1", url: "https://bolaloca.my/player/3/137  " },
+  { name: "IT Skycalcio", category: "server1", url: "https://bolaloca.my/player/3/138  " },
+  { name: "IT Feed", category: "server1", url: "https://bolaloca.my/player/3/139  " },
+  { name: "IT Feed", category: "server1", url: "https://bolaloca.my/player/3/140  " },
+  { name: "NL ESPN 1", category: "server1", url: "https://bolaloca.my/player/3/141  " },
+  { name: "NL ESPN 2", category: "server1", url: "https://bolaloca.my/player/3/142  " },
+  { name: "NL ESPN 3", category: "server1", url: "https://bolaloca.my/player/3/143  " },
+  { name: "PT Sport 1", category: "server1", url: "https://bolaloca.my/player/3/144  " },
+  { name: "PT Sport 2", category: "server1", url: "https://bolaloca.my/player/3/145  " },
+  { name: "PT Sport 3", category: "server1", url: "https://bolaloca.my/player/3/146  " },
+  { name: "PT BTV", category: "server1", url: "https://bolaloca.my/player/3/147  " },
+  { name: "GR Sport 1", category: "server1", url: "https://bolaloca.my/player/3/148  " },
+  { name: "GR Sport 2", category: "server1", url: "https://bolaloca.my/player/3/149  " },
+  { name: "GR Sport 3", category: "server1", url: "https://bolaloca.my/player/3/150  " },
+  { name: "TR BeIN Sport 1", category: "server1", url: "https://bolaloca.my/player/3/151  " },
+  { name: "TR BeIN Sport 2", category: "server1", url: "https://bolaloca.my/player/3/152  " },
+  { name: "BE Channel1", category: "server1", url: "https://bolaloca.my/player/3/153  " },
+  { name: "BE Channel2", category: "server1", url: "https://bolaloca.my/player/3/154  " },
+  { name: "Extra Sport1", category: "server1", url: "https://bolaloca.my/player/3/155  " },
+  { name: "Extra Sport2", category: "server1", url: "https://bolaloca.my/player/3/156  " },
+  { name: "Extra Sport3", category: "server1", url: "https://bolaloca.my/player/3/157  " },
+  { name: "Extra Sport4", category: "server1", url: "https://bolaloca.my/player/3/158  " },
+  { name: "Extra Sport5", category: "server1", url: "https://bolaloca.my/player/3/159  " },
+  { name: "Extra Sport6", category: "server1", url: "https://bolaloca.my/player/3/160  " },
+  { name: "Extra Sport7", category: "server1", url: "https://bolaloca.my/player/3/161  " },
+  { name: "Extra Sport8", category: "server1", url: "https://bolaloca.my/player/3/162  " },
+  { name: "Extra Sport9", category: "server1", url: "https://bolaloca.my/player/3/163  " },
+  { name: "Extra Sport10", category: "server1", url: "https://bolaloca.my/player/3/164  " },
+  { name: "Extra Sport11", category: "server1", url: "https://bolaloca.my/player/3/165  " },
+  { name: "Extra Sport12", category: "server1", url: "https://bolaloca.my/player/3/166  " },
+  { name: "Extra Sport13", category: "server1", url: "https://bolaloca.my/player/3/167  " },
+  { name: "Extra Sport14", category: "server1", url: "https://bolaloca.my/player/3/168  " },
+  { name: "Extra Sport15", category: "server1", url: "https://bolaloca.my/player/3/169  " },
+  { name: "Extra Sport16", category: "server1", url: "https://bolaloca.my/player/3/170  " },
+  { name: "Extra Sport17", category: "server1", url: "https://bolaloca.my/player/3/171  " },
+  { name: "Extra Sport18", category: "server1", url: "https://bolaloca.my/player/3/172  " },
+  { name: "Extra Sport19", category: "server1", url: "https://bolaloca.my/player/3/173  " },
+  { name: "Extra Sport20", category: "server1", url: "https://bolaloca.my/player/3/174  " },
+  { name: "Extra Sport21", category: "server1", url: "https://bolaloca.my/player/3/175  " },
+  { name: "Extra Sport22", category: "server1", url: "https://bolaloca.my/player/3/176  " },
+  { name: "Extra Sport23", category: "server1", url: "https://bolaloca.my/player/3/177  " },
+  { name: "Extra Sport24", category: "server1", url: "https://bolaloca.my/player/3/178  " },
+  { name: "Extra Sport25", category: "server1", url: "https://bolaloca.my/player/3/179  " },
+  { name: "Extra Sport26", category: "server1", url: "https://bolaloca.my/player/3/180  " },
+  { name: "Extra Sport27", category: "server1", url: "https://bolaloca.my/player/3/181  " },
+  { name: "Extra Sport28", category: "server1", url: "https://bolaloca.my/player/3/182  " },
+  { name: "Extra Sport30", category: "server1", url: "https://bolaloca.my/player/3/183  " },
+  { name: "Extra Sport31", category: "server1", url: "https://bolaloca.my/player/3/184  " },
+  { name: "Extra Sport32", category: "server1", url: "https://bolaloca.my/player/3/185  " },
+  { name: "Extra Sport33", category: "server1", url: "https://bolaloca.my/player/3/186  " },
+  { name: "Extra Sport34", category: "server1", url: "https://bolaloca.my/player/3/187  " },
+  { name: "Extra Sport35", category: "server1", url: "https://bolaloca.my/player/3/188  " },
+  { name: "Extra Sport36", category: "server1", url: "https://bolaloca.my/player/3/189  " },
+  { name: "Extra Sport37", category: "server1", url: "https://bolaloca.my/player/3/190  " },
+  { name: "Extra Sport38", category: "server1", url: "https://bolaloca.my/player/3/191  " },
+  { name: "Extra Sport39", category: "server1", url: "https://bolaloca.my/player/3/192  " },
+  { name: "Extra Sport40", category: "server1", url: "https://bolaloca.my/player/3/193  " },
+  { name: "Extra Sport41", category: "server1", url: "https://bolaloca.my/player/3/194  " },
+  { name: "Extra Sport42", category: "server1", url: "https://bolaloca.my/player/3/195  " },
+  { name: "Extra Sport43", category: "server1", url: "https://bolaloca.my/player/3/196  " },
+  { name: "Extra Sport44", category: "server1", url: "https://bolaloca.my/player/3/197  " },
+  { name: "Extra Sport45", category: "server1", url: "https://bolaloca.my/player/3/198  " },
+  { name: "Extra Sport46", category: "server1", url: "https://bolaloca.my/player/3/199  " },
+  { name: "Extra Sport47", category: "server1", url: "https://bolaloca.my/player/3/200  " },
+  { name: "Eurosport 1 UK HD", category: "server2", url: "https://www.vidembed.re/stream/49ce41be-859d-47fa-97bd-2ef98cbfa2b4#autostart  " },
+  { name: "Eurosport 2 UK HD", category: "server2", url: "https://antenasport.org/eurosport2uk.php  " },
+  { name: "OKKO Sport Russia", category: "server2", url: "https://antenasport.org/okkosport.php  " },
+  { name: "OKKO Sport 2 Russia", category: "server2", url: "https://antenasport.org/okkosport2.php  " },
+  { name: "OKKO Futbol Russia", category: "server2", url: "https://antenasport.org/okkofutbol.php  " },
+  { name: "Movistar + LaLiga", category: "server2", url: "https://antenasport.org/movistarliga1.php  " },
+  { name: "DAZN LaLiga Spain", category: "server2", url: "https://antenasport.org/dazn1laliga.php  " },
+  { name: "DAZN 2 LaLiga Spain", category: "server2", url: "https://antenasport.org/dazn2laliga.php  " },
+  { name: "LA LIGA TV UK", category: "server2", url: "https://www.vidembed.re/stream/49ce41be-859d-47fa-97bd-2ef98cbfa2b4#autostart  " },
+  { name: "LA LIGA TV Hypermotion Spain", category: "server2", url: "https://antenasport.org/liga1.php  " },
+  { name: "LA LIGA TV Hypermotion 2 Spain", category: "server2", url: "https://antenasport.org/liga2.php  " },
+  { name: "Sky Bundesliga HD", category: "server2", url: "https://antenasport.org/skyhd.php  " },
+  { name: "Sky Bundesliga 1 HD", category: "server2", url: "https://antenasport.org/sky1de.php  " },
+  { name: "Sky Bundesliga 2 HD", category: "server2", url: "https://antenasport.org/sky2de.php  " },
+  { name: "Sky Bundesliga 3 HD", category: "server2", url: "https://antenasport.org/sky3de.php  " },
+  { name: "Sky Bundesliga 4 HD", category: "server2", url: "https://antenasport.org/sky4de.php  " },
+  { name: "Sky Bundesliga 5 HD", category: "server2", url: "https://antenasport.org/sky5de.php  " },
+  { name: "Sky Bundesliga 6 HD", category: "server2", url: "https://antenasport.org/sky6de.php  " },
+  { name: "Sky Bundesliga 7 HD", category: "server2", url: "https://antenasport.org/sky7de.php  " },
+  { name: "Sky Bundesliga 8 HD", category: "server2", url: "https://antenasport.org/sky8de.php  " },
+  { name: "Sky Bundesliga 9 HD", category: "server2", url: "https://antenasport.org/sky9de.php  " },
+  { name: "Sky Bundesliga 10 HD", category: "server2", url: "https://antenasport.org/sky10de.php  " },
+  { name: "Setanta Sport 1 Eurasia HD", category: "server2", url: "https://antenasport.org/setantasport1.php  " },
+  { name: "Setanta Sport 2 Eurasia HD", category: "server2", url: "https://antenasport.org/setantasport2.php  " },
+  { name: "Setanta Sport Ukraine HD", category: "server2", url: "https://antenasport.org/setantaukraine.php  " },
+  { name: "Setanta Sport Ukraine Plus HD", category: "server2", url: "https://antenasport.org/setantaukraineplus.php  " },
+  { name: "Setanta Sport Ukraine Premium HD", category: "server2", url: "https://antenasport.org/setantapremium.php  " },
+  { name: "Setanta Sport Kazakstan HD", category: "server2", url: "https://antenasport.org/setantakazakstan.php  " },
+  { name: "Match TV Russia HD", category: "server2", url: "https://antenasport.org/match.php  " },
+  { name: "Match Futbol 1 Russia HD", category: "server2", url: "https://antenasport.org/match1.php  " },
+  { name: "Match Futbol 2 Russia HD", category: "server2", url: "https://antenasport.org/match2.php  " },
+  { name: "Match Futbol 3 Russia HD", category: "server2", url: "https://antenasport.org/match3.php  " },
+  { name: "Match Premier Russia HD", category: "server2", url: "https://antenasport.org/matchpremier.php  " },
+  { name: "Match Boets Russia HD", category: "server2", url: "https://antenasport.org/matchboets.php  " },
+  { name: "Match Igra Russia HD", category: "server2", url: "https://antenasport.org/matchigra.php  " },
+  { name: "Match Arena Russia HD", category: "server2", url: "https://antenasport.org/matcharena.php  " },
+  { name: "Setanta Sport 1 Georgia HD", category: "server2", url: "https://antenasport.org/setantasport1georgia.php  " },
+  { name: "Setanta Sport 2 Georgia HD", category: "server2", url: "https://antenasport.org/setantasport2georgia.php  " },
+  { name: "Silk Sport 1 Georgia HD", category: "server2", url: "https://antenasport.org/silksport1georgia.php  " },
+  { name: "Silk Sport 2 Georgia HD", category: "server2", url: "https://antenasport.org/silksport2georgia.php  " },
+  { name: "Sky Sports 1 New Zealand", category: "server2", url: "https://antenasport.org/sky1nz.php  " },
+  { name: "Sky Sports 2 New Zealand", category: "server2", url: "https://antenasport.org/sky2nz.php  " },
+  { name: "Sky Sports 3 New Zealand", category: "server2", url: "https://antenasport.org/sky3nz.php  " },
+  { name: "Sky Sports 4 New Zealand", category: "server2", url: "https://antenasport.org/sky4nz.php  " },
+  { name: "Sky Sports 5 New Zealand", category: "server2", url: "https://antenasport.org/sky5nz.php  " },
+  { name: "Sky Sports 6 New Zealand", category: "server2", url: "https://antenasport.org/sky6nz.php  " },
+  { name: "Sky Sports 7 New Zealand", category: "server2", url: "https://antenasport.org/sky7nz.php  " },
+  { name: "Sky Sports 8 New Zealand", category: "server2", url: "https://antenasport.org/sky8nz.php  " },
+  { name: "Sky Sports 9 New Zealand", category: "server2", url: "https://antenasport.org/sky9nz.php  " },
+  { name: "Sky Sports Select New Zealand", category: "server2", url: "https://antenasport.org/skyselectnz.php  " },
+  { name: "TSN 1 Canada", category: "server2", url: "https://antenasport.org/tsn1.php  " },
+  { name: "TSN 2 Canada", category: "server2", url: "https://antenasport.org/tsn2.php  " },
+  { name: "TSN 3 Canada", category: "server2", url: "https://antenasport.org/tsn3.php  " },
+  { name: "TSN 4 Canada", category: "server2", url: "https://antenasport.org/tsn4.php  " },
+  { name: "TSN 5 Canada", category: "server2", url: "https://antenasport.org/tsn5.php  " },
+  { name: "Polsat Sport 1 HD", category: "server2", url: "https://antenasport.org/polsatsport1.php  " },
+  { name: "Polsat Sport 2 HD", category: "server2", url: "https://antenasport.org/polsatsport2.php  " },
+  { name: "Polsat Sport 3 HD", category: "server2", url: "https://antenasport.org/polsatsport3.php  " },
+  { name: "Polsat Sport 1 Premium HD", category: "server2", url: "https://antenasport.org/polsatpremium1.php  " },
+  { name: "Polsat Sport 2 Premium HD", category: "server2", url: "https://antenasport.org/polsatpremium2.php  " },
+  { name: "Canal Sport 1 Poland HD", category: "server2", url: "https://antenasport.org/canalsportplus1pl.php  " },
+  { name: "Canal Sport 2 Poland HD", category: "server2", url: "https://antenasport.org/canalsportplus2pl.php  " },
+  { name: "Canal Sport 3 Poland HD", category: "server2", url: "https://antenasport.org/canalsportplus3pl.php  " },
+  { name: "Canal Sport 4 Poland HD", category: "server2", url: "https://antenasport.org/canalsportplus4pl.php  " },
+  { name: "Canal Sport 5 Poland HD", category: "server2", url: "https://antenasport.org/canalsportplus5pl.php  " },
+  { name: "Eleven Sport 1 Poland HD", category: "server2", url: "https://antenasport.org/elevensport1pl.php  " },
+  { name: "Eleven Sport 2 Poland HD", category: "server2", url: "https://antenasport.org/elevensport2pl.php  " },
+  { name: "Eleven Sport 3 Poland HD", category: "server2", url: "https://antenasport.org/elevensport3pl.php  " },
+  { name: "Eleven Sport 4 Poland HD", category: "server2", url: "https://antenasport.org/elevensport4pl.php  " },
+  { name: "OnePlay Sport 1 Czech HD", category: "server2", url: "https://antenasport.org/oneplaysport1.php  " },
+  { name: "OnePlay Sport 2 Czech HD", category: "server2", url: "https://antenasport.org/oneplaysport2.php  " },
+  { name: "OnePlay Sport 3 Czech HD", category: "server2", url: "https://antenasport.org/oneplaysport3.php  " },
+  { name: "Novasport 1 Czech HD", category: "server2", url: "https://antenasport.org/novasport1cz.php  " },
+  { name: "Novasport 2 Czech HD", category: "server2", url: "https://antenasport.org/novasport2cz.php  " },
+  { name: "Novasport 3 Czech HD", category: "server2", url: "https://antenasport.org/novasport3cz.php  " },
+  { name: "Novasport 4 Czech HD", category: "server2", url: "https://antenasport.org/novasport4cz.php  " },
+  { name: "Novasport 5 Czech HD", category: "server2", url: "https://antenasport.org/novasport5cz.php  " },
+  { name: "Novasport 6 Czech HD", category: "server2", url: "https://antenasport.org/novasport6cz.php  " },
+  { name: "Canal Sport 1 Czech HD", category: "server2", url: "https://antenasport.org/canalsportplus1cz.php  " },
+  { name: "Canal Sport 2 Czech HD", category: "server2", url: "https://antenasport.org/canalsportplus2cz.php  " },
+  { name: "Canal Sport 3 Czech HD", category: "server2", url: "https://antenasport.org/canalsportplus3cz.php  " },
+  { name: "Canal Sport 4 Czech HD", category: "server2", url: "https://antenasport.org/canalsportplus4cz.php  " },
+  { name: "Canal Sport 5 Czech HD", category: "server2", url: "https://antenasport.org/canalsportplus5cz.php  " },
+  { name: "Canal Sport 6 Czech HD", category: "server2", url: "https://antenasport.org/canalsportplus6cz.php  " },
+  { name: "Canal Sport 7 Czech HD", category: "server2", url: "https://antenasport.org/canalsportplus7cz.php  " },
+  { name: "Canal Sport 8 Czech HD", category: "server2", url: "https://antenasport.org/canalsportplus8cz.php  " },
+  { name: "Premier Sport 1 Czech HD", category: "server2", url: "https://antenasport.org/premiersport1cz.php  " },
+  { name: "Premier Sport 2 Czech HD", category: "server2", url: "https://antenasport.org/premiersport2cz.php  " },
+  { name: "Premier Sport 3 Czech HD", category: "server2", url: "https://antenasport.org/premiersport3cz.php  " },
+  { name: "Sport 1 Israel", category: "server2", url: "https://antenasport.org/sport1il.php  " },
+  { name: "Sport 2 Israel", category: "server2", url: "https://antenasport.org/sport2il.php  " },
+  { name: "Sport 3 Israel", category: "server2", url: "https://antenasport.org/sport3il.php  " },
+  { name: "Sport 4 Israel", category: "server2", url: "https://antenasport.org/sport4il.php  " },
+  { name: "Sport 5 Israel", category: "server2", url: "https://antenasport.org/sport5il.php  " },
+  { name: "Sport 5 Live Israel", category: "server2", url: "https://antenasport.org/sport5live.php  " },
+  { name: "Sport 5 Stars Israel", category: "server2", url: "https://antenasport.org/sport5starsil.php  " },
+  { name: "Sport 5 Gold Israel", category: "server2", url: "https://antenasport.org/sport5goldil.php  " },
+  { name: "Sport 5 Plus Israel", category: "server2", url: "https://antenasport.org/sport5plusil.php  " },
+  { name: "One Sport 1 Israel", category: "server2", url: "https://antenasport.org/oneisrael.php  " },
+  { name: "Cosmote Sport 1", category: "server2", url: "https://antenasport.org/cosmote1.php  " },
+  { name: "Cosmote Sport 2", category: "server2", url: "https://antenasport.org/cosmote2.php  " },
+  { name: "Cosmote Sport 3", category: "server2", url: "https://antenasport.org/cosmote3.php  " },
+  { name: "Cosmote Sport 4", category: "server2", url: "https://antenasport.org/cosmote4.php  " },
+  { name: "Cosmote Sport 5", category: "server2", url: "https://antenasport.org/cosmote5.php  " },
+  { name: "Cosmote Sport 6", category: "server2", url: "https://antenasport.org/cosmote6.php  " },
+  { name: "Cosmote Sport 7", category: "server2", url: "https://antenasport.org/cosmote7.php  " },
+  { name: "Cosmote Sport 8", category: "server2", url: "https://antenasport.org/cosmote8.php  " },
+  { name: "Cosmote Sport 9", category: "server2", url: "https://antenasport.org/cosmote9.php  " },
+  { name: "Novasport Prime", category: "server2", url: "https://antenasport.org/novasportprime.php  " },
+  { name: "Nova Sport 1", category: "server2", url: "https://antenasport.org/novasport1gr.php  " },
+  { name: "Nova Sport 2", category: "server2", url: "https://antenasport.org/novasport2gr.php  " },
+  { name: "Nova Sport 3", category: "server2", url: "https://antenasport.org/novasport3gr.php  " },
+  { name: "Nova Sport 4", category: "server2", url: "https://antenasport.org/novasport4gr.php  " },
+  { name: "Nova Sport 5", category: "server2", url: "https://antenasport.org/novasport5gr.php  " },
+  { name: "Nova Sport 6", category: "server2", url: "https://antenasport.org/novasport6gr.php  " },
+  { name: "Nova Sport Start", category: "server2", url: "https://antenasport.org/novasportstart.php  " },
+  { name: "Nova Sport Premier League", category: "server2", url: "https://antenasport.org/novasportpremier.php  " },
+  { name: "DIRECTV ARGENTINA", category: "server2", url: "https://antenasport.org/directsports.php  " },
+  { name: "DIRECTV ARGENTINA 2", category: "server2", url: "https://antenasport.org/directsports2.php  " },
+  { name: "DIRECTV ARGENTINA +", category: "server2", url: "https://antenasport.org/directsportsplus.php  " },
+  { name: "ESPN 1 Argentina", category: "server2", url: "https://antenasport.org/espn1argentina.php  " },
+  { name: "ESPN 2 Argentina", category: "server2", url: "https://antenasport.org/espn2argentina.php  " },
+  { name: "ESPN 3 Argentina", category: "server2", url: "https://antenasport.org/espn3argentina.php  " },
+  { name: "ESPN 4 Argentina", category: "server2", url: "https://antenasport.org/espn4argentina.php  " },
+  { name: "ESPN Premium Argentina", category: "server2", url: "https://antenasport.org/espnpremiumargentina.php  " },
+  { name: "FOX Sports 1 Argentina", category: "server2", url: "https://antenasport.org/foxsports1argentina.php  " },
+  { name: "FOX Sports 2 Argentina", category: "server2", url: "https://antenasport.org/foxsports2argentina.php  " },
+  { name: "FOX Sports 3 Argentina", category: "server2", url: "https://antenasport.org/foxsports3argentina.php  " },
+  { name: "FOX Sports 1 Mexico", category: "server2", url: "https://antenasport.org/foxsports1mexico.php  " },
+  { name: "FOX Sports 2 Mexico", category: "server2", url: "https://antenasport.org/foxsports2mexico.php  " },
+  { name: "FOX Sports 3 Mexico", category: "server2", url: "https://antenasport.org/foxsports3mexico.php  " },
+  { name: "FOX Sports Premium Mexico", category: "server2", url: "https://antenasport.org/foxsportspremiummexico.php  " },
+  { name: "ESPN 1 Mexico", category: "server2", url: "https://antenasport.org/espn1mx.php  " },
+  { name: "ESPN 2 Mexico", category: "server2", url: "https://antenasport.org/espn2mx.php  " },
+  { name: "ESPN 3 Mexico", category: "server2", url: "https://antenasport.org/espn3mx.php  " },
+  { name: "ESPN 4 Mexico", category: "server2", url: "https://antenasport.org/espn4mx.php  " },
+  { name: "Azteca 7 Mexico", category: "server2", url: "https://antenasport.org/azteca7.php  " },
+  { name: "Canal 5 Mexico", category: "server2", url: "https://antenasport.org/canal5mexico  " },
+  { name: "TNT Sports Premium Chile", category: "server2", url: "https://antenasport.org/tntsportspremiumchile.php  " },
+  { name: "TNT Sports Premium Argentina", category: "server2", url: "https://antenasport.org/tntsportspremiumargentina.php  " },
+  { name: "GOLTV USA", category: "server2", url: "https://antenasport.org/goltvusa.php  " },
+  { name: "GOLTV Ecuador", category: "server2", url: "https://antenasport.org/goltvecuador.php  " },
+  { name: "WIN SPORT PLUS", category: "server2", url: "https://antenasport.org/winsportplus.php  " },
+  { name: "ECDF Ecuador", category: "server2", url: "https://antenasport.org/ecdfecuador.php  " },
+  { name: "VTV Plus Uruguay", category: "server2", url: "https://antenasport.org/vtvplus.php  " },
+  { name: "Liga 1 Max Peru", category: "server2", url: "https://antenasport.org/liga1max.php  " },
+  { name: "TV2 Denmark", category: "server2", url: "https://antenasport.org/tv2dk.php  " },
+  { name: "TV2 Sport Denmark", category: "server2", url: "https://antenasport.org/tv2sportdk.php  " },
+  { name: "TV2 Sport X Denmark", category: "server2", url: "https://antenasport.org/tv2sportxdk.php  " },
+  { name: "TV3 Sport Denmark", category: "server2", url: "https://antenasport.org/tv3sportdk.php  " },
+  { name: "TV3 Plus Denmark", category: "server2", url: "https://antenasport.org/tv3plusdk.php  " },
+  { name: "TV3 Max Denmark", category: "server2", url: "https://antenasport.org/tv3maxdk.php  " },
+  { name: "TV2 Sport 1 Norway", category: "server2", url: "https://antenasport.org/tv2sport1.php  " },
+  { name: "TV2 Sport 2 Norway", category: "server2", url: "https://antenasport.org/tv2sport2.php  " },
+  { name: "TV2 Sport Premium Norway", category: "server2", url: "https://antenasport.org/tv2sportpremium.php  " },
+  { name: "Movistar Campeones", category: "server2", url: "https://antenasport.org/movistarcampeones.php  " },
+  { name: "Movistar Campeones 2", category: "server2", url: "https://antenasport.org/movistarcampeones2.php  " },
+  { name: "Movistar Campeones 3", category: "server2", url: "https://antenasport.org/movistarcampeones3.php  " },
+  { name: "Movistar Campeones 4", category: "server2", url: "https://antenasport.org/movistarcampeones4.php  " },
+  { name: "Canal + Live 1 France", category: "server2", url: "https://antenasport.org/canalpluslive1.php  " },
+  { name: "Canal + Live 2 France", category: "server2", url: "https://antenasport.org/canalpluslive2.php  " },
+  { name: "Canal + Live 3 France", category: "server2", url: "https://antenasport.org/canalpluslive3.php  " },
+  { name: "Canal + Live 4 France", category: "server2", url: "https://antenasport.org/canalpluslive4.php  " },
+  { name: "Canal + Live 5 France", category: "server2", url: "https://antenasport.org/canalpluslive5.php  " },
+  { name: "Canal + Live 6 France", category: "server2", url: "https://antenasport.org/canalpluslive6.php  " },
+  { name: "Canal + Live 7 France", category: "server2", url: "https://antenasport.org/canalpluslive7.php  " },
+  { name: "Canal + Live 8 France", category: "server2", url: "https://antenasport.org/canalpluslive8.php  " },
+  { name: "Canal + Live 9 France", category: "server2", url: "https://antenasport.org/canalpluslive9.php  " },
+  { name: "Canal + Live 10 France", category: "server2", url: "https://antenasport.org/canalpluslive10.php  " },
+  { name: "Canal + Live 11 France", category: "server2", url: "https://antenasport.org/canalpluslive11.php  " },
+  { name: "Canal + Live 12 France", category: "server2", url: "https://antenasport.org/canalpluslive12.php  " },
+  { name: "Canal + Live 13 France", category: "server2", url: "https://antenasport.org/canalpluslive13.php  " },
+  { name: "Canal + Live 14 France", category: "server2", url: "https://antenasport.org/canalpluslive14.php  " },
+  { name: "Canal + Live 15 France", category: "server2", url: "https://antenasport.org/canalpluslive15.php  " },
+  { name: "Canal + Live 16 France", category: "server2", url: "https://antenasport.org/canalpluslive16.php  " },
+  { name: "Canal + Live 17 France", category: "server2", url: "https://antenasport.org/canalpluslive17.php  " },
+  { name: "Canal + Live 18 France", category: "server2", url: "https://antenasport.org/canalpluslive18.php  " },
+  { name: "TNT Sport 1 UK", category: "server2", url: "https://antenasport.org/maxtnt1.php  " },
+  { name: "TNT Sport 2 UK", category: "server2", url: "https://antenasport.org/maxtnt2.php  " },
+  { name: "TNT Sport 3 UK", category: "server2", url: "https://antenasport.org/maxtnt3.php  " },
+  { name: "TNT Sport 4 UK", category: "server2", url: "https://antenasport.org/maxtnt4.php  " },
+  { name: "TNT Sport 5 UK", category: "server2", url: "https://antenasport.org/maxtnt5.php  " },
+  { name: "TNT Sport 6 UK", category: "server2", url: "https://antenasport.org/maxtnt6.php  " },
+  { name: "TNT Sport 7 UK", category: "server2", url: "https://antenasport.org/maxtnt7.php  " },
+  { name: "TNT Sport 8 UK", category: "server2", url: "https://antenasport.org/maxtnt8.php  " },
+  { name: "PremierSport 1 UK", category: "server2", url: "https://antenasport.org/viaplay1.php  " },
+  { name: "PremierSport 2 UK", category: "server2", url: "https://antenasport.org/viaplay2.php  " },
+  { name: "RSI LA 2 Switzerland", category: "server2", url: "https://antenasport.org/rsila2.php  " },
+  { name: "SRF 2 Switzerland", category: "server2", url: "https://antenasport.org/srf2.php  " },
+  { name: "RTS 2 Deux Switzerland", category: "server2", url: "https://antenasport.org/rts2deux.php  " },
+  { name: "ARD Germany", category: "server2", url: "https://antenasport.org/ard.php  " },
+  { name: "ZDF Germany", category: "server2", url: "https://antenasport.org/zdf.php  " },
+  { name: "ORF 1 Austria", category: "server2", url: "https://antenasport.org/orf1.php  " },
+  { name: "Benfica TV", category: "server2", url: "https://antenasport.org/benficatv.php  " },
+  { name: "DAZN 1 PT", category: "server2", url: "https://antenasport.org/dazn1pt.php  " },
+  { name: "DAZN 2 PT", category: "server2", url: "https://antenasport.org/dazn2pt.php  " },
+  { name: "DAZN 3 PT", category: "server2", url: "https://antenasport.org/dazn3pt.php  " },
+  { name: "DAZN 4 PT", category: "server2", url: "https://antenasport.org/dazn4pt.php  " },
+  { name: "DAZN 5 PT", category: "server2", url: "https://antenasport.org/dazn5pt.php  " },
+  { name: "DAZN 6 PT", category: "server2", url: "https://antenasport.org/dazn6pt.php  " },
+  { name: "DAZN 1 FR", category: "server2", url: "https://antenasport.org/dazn1fr.php  " },
+  { name: "DAZN 1 Belgium", category: "server2", url: "https://antenasport.org/dazn1eleven.php  " },
+  { name: "DAZN 1 DE", category: "server2", url: "https://antenasport.org/dazn1de.php  " },
+  { name: "DAZN 2 DE", category: "server2", url: "https://antenasport.org/dazn2de.php  " },
+  { name: "DAZN 1 Spain", category: "server2", url: "https://antenasport.org/dazn1.php  " },
+  { name: "DAZN 2 Spain", category: "server2", url: "https://antenasport.org/dazn2.php  " },
+  { name: "DAZN 3 Spain", category: "server2", url: "https://antenasport.org/dazn3.php  " },
+  { name: "DAZN 4 Spain", category: "server2", url: "https://antenasport.org/dazn4.php  " },
+  { name: "Sky Sports Formula 1 UK", category: "server2", url: "https://antenasport.org/skyf1.php  " },
+  { name: "DAZN Formula 1 Spain", category: "server2", url: "https://antenasport.org/daznf1.php  " },
+  { name: "Megogo Sport Ukraine", category: "server2", url: "https://antenasport.org/megogosport.php  " },
+  { name: "Megogo Futbol 1 Ukraine", category: "server2", url: "https://antenasport.org/megogosport1.php  " },
+  { name: "Movistar Deportes 1", category: "server2", url: "https://antenasport.org/movistar1.php  " },
+  { name: "Movistar Deportes 2", category: "server2", url: "https://antenasport.org/movistar2.php  " },
+  { name: "Movistar Deportes 3", category: "server2", url: "https://antenasport.org/movistar3.php  " },
+  { name: "Movistar Deportes 4", category: "server2", url: "https://antenasport.org/movistar4.php  " },
+  { name: "Fox Soccer Plus USA", category: "server2", url: "https://antenasport.org/foxsoccerplus.php  " },
+  { name: "Fox Deportes USA", category: "server2", url: "https://antenasport.org/foxdeportes.php  " },
+  { name: "CBS Sports Network", category: "server2", url: "https://antenasport.org/cbssports.php  " },
+  { name: "USA Network", category: "server2", url: "https://antenasport.org/usa.php  " },
+  { name: "NBC", category: "server2", url: "https://antenasport.org/nbc.php  " },
+  { name: "CNBC", category: "server2", url: "https://antenasport.org/cnbc.php  " },
+  { name: "NBC UNIVERSO", category: "server2", url: "https://antenasport.org/nbcuniverso.php  " },
+  { name: "TELEMUNDO", category: "server2", url: "https://antenasport.org/telemundo.php  " },
+  { name: "TNT USA", category: "server2", url: "https://antenasport.org/tnt.php  " },
+  { name: "ABC USA", category: "server2", url: "https://antenasport.org/abc.php  " },
+  { name: "YES USA", category: "server2", url: "https://antenasport.org/yes.php  " },
+  { name: "Altitude USA", category: "server2", url: "https://antenasport.org/altitude.php  " },
+  { name: "ESPN USA", category: "server2", url: "https://antenasport.org/espn.php  " },
+  { name: "ESPN 2 USA", category: "server2", url: "https://antenasport.org/espn2.php  " },
+  { name: "ESPN Deportes USA", category: "server2", url: "https://antenasport.org/espndeportes.php  " },
+  { name: "Fox Sports 1 USA", category: "server2", url: "https://antenasport.org/fox1.php  " },
+  { name: "Fox Sports 2 USA", category: "server2", url: "https://antenasport.org/fox2.php  " },
+  { name: "BeinSport USA", category: "server2", url: "https://antenasport.org/beinsportusa.php  " },
+  { name: "BeinSport USA Espanyol", category: "server2", url: "https://antenasport.org/beinsportusaes.php  " },
+  { name: "Sportsnet One", category: "server2", url: "https://antenasport.org/sportsnetone.php  " },
+  { name: "Sportsnet Ontario", category: "server2", url: "https://antenasport.org/sportnetontario.php  " },
+  { name: "Sportsnet Pacific", category: "server2", url: "https://antenasport.org/sportsnetpacific.php  " },
+  { name: "Sportdigital Fussball Germany", category: "server2", url: "https://antenasport.org/sportdigital.php  " },
+  { name: "Sportklub Serbia", category: "server2", url: "https://antenasport.org/sportklub.php  " },
+  { name: "Sportklub 1 Serbia", category: "server2", url: "https://antenasport.org/sportklub1.php  " },
+  { name: "Sportklub 2 Serbia", category: "server2", url: "https://antenasport.org/sportklub2.php  " },
+  { name: "Sportklub 3 Serbia", category: "server2", url: "https://antenasport.org/sportklub3.php  " },
+  { name: "Sportklub 4 Serbia", category: "server2", url: "https://antenasport.org/sportklub4.php  " },
+  { name: "Arena Sport 1 Serbia", category: "server2", url: "https://antenasport.org/arenasport1sr.php  " },
+  { name: "Arena Sport 2 Serbia", category: "server2", url: "https://antenasport.org/arenasport2sr.php  " },
+  { name: "Arena Sport 3 Serbia", category: "server2", url: "https://antenasport.org/arenasport3sr.php  " },
+  { name: "Arena Sport 4 Serbia", category: "server2", url: "https://antenasport.org/arenasport4sr.php  " },
+  { name: "Arena Sport 5 Serbia", category: "server2", url: "https://antenasport.org/arenasport5sr.php  " },
+  { name: "Arena Sport 6 Serbia", category: "server2", url: "https://antenasport.org/arenasport6sr.php  " },
+  { name: "Arena Sport 7 Serbia", category: "server2", url: "https://antenasport.org/arenasport7sr.php  " },
+  { name: "Arena Sport 8 Serbia", category: "server2", url: "https://antenasport.org/arenasport8sr.php  " },
+  { name: "Arena Sport 9 Serbia", category: "server2", url: "https://antenasport.org/arenasport9sr.php  " },
+  { name: "Arena Sport 10 Serbia", category: "server2", url: "https://antenasport.org/arenasport10sr.php  " },
+  { name: "Arena Sport 1 Croatia", category: "server2", url: "https://antenasport.org/arenasport1hr.php  " },
+  { name: "Arena Sport 2 Croatia", category: "server2", url: "https://antenasport.org/arenasport2hr.php  " },
+  { name: "Arena Sport 3 Croatia", category: "server2", url: "https://antenasport.org/arenasport3hr.php  " },
+  { name: "Arena Sport 4 Croatia", category: "server2", url: "https://antenasport.org/arenasport4hr.php  " },
+  { name: "Arena Sport 5 Croatia", category: "server2", url: "https://antenasport.org/arenasport5hr.php  " },
+  { name: "Arena Sport 6 Croatia", category: "server2", url: "https://antenasport.org/arenasport6hr.php  " },
+  { name: "Arena Sport 7 Croatia", category: "server2", url: "https://antenasport.org/arenasport7hr.php  " },
+  { name: "Arena Sport 8 Croatia", category: "server2", url: "https://antenasport.org/arenasport8hr.php  " },
+  { name: "Arena Sport 9 Croatia", category: "server2", url: "https://antenasport.org/arenasport9hr.php  " },
+  { name: "Arena Sport 10 Croatia", category: "server2", url: "https://antenasport.org/arenasport10hr.php  " },
+  { name: "Arena Sport 1 Premium Bosnia", category: "server2", url: "https://antenasport.org/arena1premiumbosnia.php  " },
+  { name: "Arena Sport 2 Premium Bosnia", category: "server2", url: "https://antenasport.org/arena2premiumbosnia.php  " },
+  { name: "Arena Sport 3 Premium Bosnia", category: "server2", url: "https://antenasport.org/arena3premiumbosnia.php  " },
+  { name: "Arena Sport 1 Premium Serbia", category: "server2", url: "https://antenasport.org/arena1premiumserbia.php  " },
+  { name: "Arena Sport 2 Premium Serbia", category: "server2", url: "https://antenasport.org/arena2premiumserbia.php  " },
+  { name: "Arena Sport 3 Premium Serbia", category: "server2", url: "https://antenasport.org/arena3premiumserbia.php  " },
+  { name: "Arena Sport 1 Bosnia", category: "server2", url: "https://antenasport.org/arenasport1bh.php  " },
+  { name: "Arena Sport 2 Bosnia", category: "server2", url: "https://antenasport.org/arenasport2bh.php  " },
+  { name: "Arena Sport 3 Bosnia", category: "server2", url: "https://antenasport.org/arenasport3bh.php  " },
+  { name: "Arena Sport 4 Bosnia", category: "server2", url: "https://antenasport.org/arenasport4bh.php  " },
+  { name: "Arena Sport 5 Bosnia", category: "server2", url: "https://antenasport.org/arenasport5bh.php  " },
+  { name: "Arena Sport 6 Bosnia", category: "server2", url: "https://antenasport.org/arenasport6bh.php  " },
+  { name: "SkyTennis UK", category: "server2", url: "https://antenasport.org/skytennisuk.php  " },
+  { name: "SkyTennis Italy", category: "server2", url: "https://antenasport.org/skytennisit.php  " },
+  { name: "SkyTennis Germany", category: "server2", url: "https://antenasport.org/skytennisde.php  " },
+  { name: "SkyTop Event Germany", category: "server2", url: "https://antenasport.org/skytopeventde.php  " },
+  { name: "Tennis TV USA", category: "server2", url: "https://antenasport.org/tennistv1.php  " },
+  { name: "Canal Plus France", category: "server2", url: "https://antenasport.org/canalplusfr.php  " },
+  { name: "Canal Sport France", category: "server2", url: "https://antenasport.org/canalsportfr.php  " },
+  { name: "Canal 360 France", category: "server2", url: "https://antenasport.org/canal360fr.php  " },
+  { name: "Canal Foot France", category: "server2", url: "https://antenasport.org/canalfootfr.php  " },
+  { name: "L'Equipe TV France", category: "server2", url: "https://antenasport.org/lequipetv.php  " },
+  { name: "Beinsport 1 France", category: "server2", url: "https://antenasport.org/bein1fr.php  " },
+  { name: "Beinsport 2 France", category: "server2", url: "https://antenasport.org/bein2fr.php  " },
+  { name: "Beinsport 3 France", category: "server2", url: "https://antenasport.org/bein3fr.php  " },
+  { name: "Sky Sports Main Event", category: "server2", url: "https://antenasport.org/skymain.php  " },
+  { name: "Sky Sports Football", category: "server2", url: "https://antenasport.org/skyfootball.php  " },
+  { name: "Sky Sports Action NFL", category: "server2", url: "https://antenasport.org/skyaction.php  " },
+  { name: "Sky Sports Arena", category: "server2", url: "https://antenasport.org/skyarena.php  " },
+  { name: "Sky Sports Golf", category: "server2", url: "https://antenasport.org/skygolf.php  " },
+  { name: "Sky Sports Cricket", category: "server2", url: "https://antenasport.org/skycricket.php  " },
+  { name: "Sport TV 1 Portugal", category: "server2", url: "https://antenasport.org/sport1pt.php  " },
+  { name: "Sport TV 2 Portugal", category: "server2", url: "https://antenasport.org/sport2pt.php  " },
+  { name: "Sport TV 3 Portugal", category: "server2", url: "https://antenasport.org/sport3pt.php  " },
+  { name: "Sport TV 4 Portugal", category: "server2", url: "https://antenasport.org/sport4pt.php  " },
+  { name: "Sport TV 5 Portugal", category: "server2", url: "https://antenasport.org/sport5pt.php  " },
+  { name: "Sport TV 6 Portugal", category: "server2", url: "https://antenasport.org/sport6pt.php  " },
+  { name: "Sport TV 7 Portugal", category: "server2", url: "https://antenasport.org/sport7pt.php  " },
+  { name: "NBA TV USA", category: "server2", url: "https://antenasport.org/nba.php  " },
+  { name: "SuspilneTV Ukraine", category: "server2", url: "https://antenasport.org/suspilnetv.php  " },
+  { name: "Suspilne Sport Ukraine", category: "server2", url: "https://antenasport.org/suspilnesport.php  " },
+  { name: "VipSport 1 Ukraine", category: "server2", url: "https://antenasport.org/vipsport1.php  " },
+  { name: "VipSport 2 Ukraine", category: "server2", url: "https://antenasport.org/vipsport2.php  " },
+  { name: "VipSport 3 Ukraine", category: "server2", url: "https://antenasport.org/vipsport3.php  " },
+  { name: "VipSport 4 Ukraine", category: "server2", url: "https://antenasport.org/vipsport4.php  " },
+  { name: "VipSport 5 Ukraine", category: "server2", url: "https://antenasport.org/vipsport5.php  " },
+  { name: "VipSport 6 Ukraine", category: "server2", url: "https://antenasport.org/vipsport6.php  " },
+  { name: "VipSport 7 Ukraine", category: "server2", url: "https://antenasport.org/vipsport7.php  " },
+  { name: "VipSport 8 Ukraine", category: "server2", url: "https://antenasport.org/vipsport8.php  " },
+  { name: "VipSport 9 Ukraine", category: "server2", url: "https://antenasport.org/vipsport9.php  " },
+  { name: "VipSport 10 Ukraine", category: "server2", url: "https://antenasport.org/vipsport10.php  " },
+  { name: "VipSport 11 Ukraine", category: "server2", url: "https://antenasport.org/vipsport11.php  " },
+  { name: "VipSport 12 Ukraine", category: "server2", url: "https://antenasport.org/vipsport12.php  " },
+  { name: "VipSport 13 Ukraine", category: "server2", url: "https://antenasport.org/vipsport13.php  " },
+  { name: "Antenasport 1", category: "server2", url: "https://antenasport.org/hd1.php  " },
+  { name: "Antenasport 2", category: "server2", url: "https://antenasport.org/hd2.php  " },
+  { name: "Antenasport 3", category: "server2", url: "https://antenasport.org/hd3.php  " },
+  { name: "Antenasport 4", category: "server2", url: "https://antenasport.org/hd4.php  " },
+  { name: "Antenasport 5", category: "server2", url: "https://antenasport.org/hd5.php  " },
+  { name: "Antenasport 6", category: "server2", url: "https://antenasport.org/hd6.php  " },
+  { name: "Antenasport 7", category: "server2", url: "https://antenasport.org/hd7.php  " },
+  { name: "Antenasport 8", category: "server2", url: "https://antenasport.org/hd8.php  " },
+  { name: "Antenasport 9", category: "server2", url: "https://antenasport.org/hd9.php  " },
+  { name: "Antenasport 10", category: "server2", url: "https://antenasport.org/hd10.php  " },
+  { name: "Antenasport 11", category: "server2", url: "https://antenasport.org/hd11.php  " },
+  { name: "Digisport 1 Romania HD", category: "server2", url: "https://antenasport.org/digisport1.php  " },
+  { name: "Digisport 2 Romania HD", category: "server2", url: "https://antenasport.org/digisport2.php  " },
+  { name: "Digisport 3 Romania HD", category: "server2", url: "https://antenasport.org/digisport3.php  " },
+  { name: "Digisport 4 Romania HD", category: "server2", url: "https://antenasport.org/digisport4.php  " },
+  { name: "Primasport 1 Romania HD", category: "server2", url: "https://antenasport.org/primasport1.php  " },
+  { name: "Primasport 2 Romania HD", category: "server2", url: "https://antenasport.org/primasport2.php  " },
+  { name: "Primasport 3 Romania HD", category: "server2", url: "https://antenasport.org/primasport3.php  " },
+  { name: "Primasport 4 Romania HD", category: "server2", url: "https://antenasport.org/primasport4.php  " },
+  { name: "Primasport 5 Romania HD", category: "server2", url: "https://antenasport.org/primasport5.php  " },
+  { name: "ProTV Romania HD", category: "server2", url: "https://antenasport.org/protv.php  " },
+  { name: "Pro Arena Romania HD", category: "server2", url: "https://antenasport.org/proarena.php  " },
+  { name: "Antena 3 Romania HD", category: "server2", url: "https://antenasport.org/antena3.php  " },
+  { name: "Antena 1 Romania HD", category: "server2", url: "https://antenasport.org/antena1.php  " },
+  { name: "Prima TV Romania HD", category: "server2", url: "https://antenasport.org/primatv.php  " },
+  { name: "TVR Sport Romania HD", category: "server2", url: "https://antenasport.org/tvrsport.php  " },
+  { name: "TVR 1 Romania HD", category: "server2", url: "https://antenasport.org/tvr1.php  " },
+  { name: "TVR 2 Romania HD", category: "server2", url: "https://antenasport.org/tvr2.php  " },
+  { name: "Eurosport 1 RO HD", category: "server2", url: "https://antenasport.org/eurosport1ro.php  " },
+  { name: "Eurosport 2 RO HD", category: "server2", url: "https://antenasport.org/eurosport2ro.php  " },
+  { name: "Eurosport 1 FR HD", category: "server2", url: "https://antenasport.org/eurosport1fr.php  " },
+  { name: "Eurosport 2 FR HD", category: "server2", url: "https://antenasport.org/eurosport2fr.php  " },
+  { name: "Sportv 3", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=sportv3" },
+  { name: "ESPN", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=espnmx" },
+  { name: "ESPN", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=espn" },
+  { name: "Canal 11", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=canal11_pt" },
+  { name: "Canal 5", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=canal5" },
+  { name: "TVC Deportes", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=tvc_deportes" },
+  { name: "Azteca Deportes", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=azteca_deportes" },
+  { name: "Dazn Eleven 1", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=eleven1_pt" },
+  { name: "ESPN 2", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=espn2" },
+  { name: "ESPN 3", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=espn3" },
+  { name: "Hisports", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=hisports" },
+  { name: "Dazn Eleven 2", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=eleven2_pt" },
+  { name: "ESPN 4", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=espn4" },
+  { name: "Dazn Eleven 3", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=eleven3_pt" },
+  { name: "Sky Sports LaLiga", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=sky_sports_laliga" },
+  { name: "ESPN 5", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=espn5" },
+  { name: "Dazn Eleven 4", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=eleven4_pt" },
+  { name: "ESPN 6", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=espn6" },
+  { name: "Sky Sports Bundesliga", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=sky_bundesliga_mx" },
+  { name: "Dazn Eleven 5", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=eleven5_pt" },
+  { name: "Dazn Eleven 6", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=eleven6_pt" },
+  { name: "Fox Deportes", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=foxdeportes" },
+  { name: "ESPN 7", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=espn7" },
+  { name: "DSports", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=dsports" },
+  { name: "ESPN Deportes", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=espndeportes" },
+  { name: "TUDN", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=tudn" },
+  { name: "Univisión", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=univision" },
+  { name: "DSports 2", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=dsports2" },
+  { name: "DSports Plus", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=dsportsplus" },
+  { name: "DAZN 1", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=dazn1" },
+  { name: "DAZN 2", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=dazn2" },
+  { name: "DAZN 3 (eventos)", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=dazn3" },
+  { name: "DAZN 4 (eventos)", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=dazn4" },
+  { name: "GOLTV", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=goltv" },
+  { name: "VTV Plus", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=vtvplus" },
+  { name: "Fox Sports 1", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=foxsports1_usa" },
+  { name: "Fox Sports 2", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=foxsports2_usa" },
+  { name: "DAZN LaLiga", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=dazn_laliga" },
+  { name: "La 1 TVE", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=la1tve" },
+  { name: "ECDF LigaPro (eventos)", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=ecdf_ligapro" },
+  { name: "Universo", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=universo" },
+  { name: "BeIN Sports Español", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=beinsportes" },
+  { name: "Unimás", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=unimas" },
+  { name: "BeIN Sports Xtra Español", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=beinsport_xtra_espanol" },
+  { name: "Liga de Campeones 1", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=ligadecampeones1" },
+  { name: "Liga de Campeones 2", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=ligadecampeones2" },
+  { name: "Liga de Campeones 3", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=ligadecampeones3" },
+  { name: "M+ LaLiga TV", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=m_laligatv" },
+  { name: "LaLigaTV BAR", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=laligatvbar" },
+  { name: "TNT Sports", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=tntsports" },
+  { name: "ESPN Premium", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=espnpremium" },
+  { name: "TyC Sports", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=tycsports" },
+  { name: "ESPN2", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=espn2_usa" },
+  { name: "ESPN U", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=espnu" },
+  { name: "TyC Sports Internacional (USA)", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=tycinternacional" },
+  { name: "CBS Sports Network", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=cbs_sports_network" },
+  { name: "Sky Bundesliga 1", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=sky_bundesliga1" },
+  { name: "Sky Bundesliga 2", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=sky_bundesliga2" },
+  { name: "Sky Bundesliga 3", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=sky_bundesliga3" },
+  { name: "Sky Bundesliga 4", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=sky_bundesliga4" },
+  { name: "Sky Bundesliga 5", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=sky_bundesliga5" },
+  { name: "DAZN 1 DE", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=dazn1_de" },
+  { name: "DAZN 2 DE", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=dazn2_de" },
+  { name: "ESPN 1 NL", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=espn1_nl" },
+  { name: "ESPN 2 NL", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=espn2_nl" },
+  { name: "Premiere 1", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=premiere1" },
+  { name: "Premiere 2", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=premiere2" },
+  { name: "Premiere 3", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=premiere3" },
+  { name: "Win Sports Plus", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=winsportsplus" },
+  { name: "Win Sports plus (2)", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=winsports2" },
+  { name: "Premiere 4", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=premiere4" },
+  { name: "Premiere 5", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=premiere5" },
+  { name: "Win Sports", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=winsports" },
+  { name: "ESPN 3 NL", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=espn3_nl" },
+  { name: "Dazn Eleven Pro 1 BE", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=elevenpro1_be" },
+  { name: "Premiere 6", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=premiere6" },
+  { name: "Premiere 7", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=premiere7" },
+  { name: "Fox Sports", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=foxsportsmx" },
+  { name: "Premiere 8", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=premiere8" },
+  { name: "Sportv", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=sportv" },
+  { name: "Fox Sports 2", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=foxsports2mx" },
+  { name: "Fox Sports 3", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=foxsports3mx" },
+  { name: "Fox Sports Premium", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=foxsportspremium" },
+  { name: "Sportv 2", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=sportv2" },
+  { name: "Sportv 3", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=sportv3" },
+  { name: "TUDN", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=tudn_mx" },
+  { name: "ESPN", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=espn_usa" },
+  { name: "Sport TV 4", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=sporttv4" },
+  { name: "Caliente TV", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=calientetv" },
+  { name: "Sport TV 5", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=sporttv5" },
+  { name: "Azteca 7", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=azteca7" },
+  { name: "Canal 5", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=canal5" },
+  { name: "Sport TV 6", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=sporttv6" },
+  { name: "Canal 11", category: "server3", url: "https://la14hd.com/vivo/canales.php?stream=canal11_pt" },
+];
+
+
+        // Show alert when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('alertModal');
+            const closeModalBtn = document.getElementById('closeModal');
+            const acceptBtn = document.getElementById('acceptBtn');
+            const channelsGrid = document.getElementById('channelsGrid');
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const searchInput = document.getElementById('searchInput');
+            const videoContainer = document.getElementById('videoContainer');
+            const videoIframe = document.getElementById('videoIframe');
+            const videoTitle = document.getElementById('videoTitle');
+            const closeVideoBtn = document.getElementById('closeVideoBtn');
+            
+            // Show modal
+            
+            // Close modal functions
+            function closeModal() {
+                modal.style.display = 'none';
+            }
+            
+            closeModalBtn.addEventListener('click', closeModal);
+            acceptBtn.addEventListener('click', closeModal);
+            
+            // Close if user clicks outside modal
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+            
+            // Close video modal
+            closeVideoBtn.addEventListener('click', function() {
+                videoContainer.classList.remove('active');
+                videoIframe.src = '';
+            });
+            
+            // Render channels
+            function renderChannels(filter = 'all', searchTerm = '') {
+                channelsGrid.innerHTML = '';
+                
+                let filteredChannels = channels;
+                
+                // Apply category filter
+                if (filter !== 'all') {
+                    filteredChannels = channels.filter(channel => channel.category === filter);
+                }
+                
+                // Apply search filter
+                if (searchTerm) {
+                    filteredChannels = filteredChannels.filter(channel => 
+                        channel.name.toLowerCase().includes(searchTerm.toLowerCase())
+                    );
+                }
+                
+                // Create channel cards
+                filteredChannels.forEach(channel => {
+                    const channelCard = document.createElement('div');
+                    channelCard.className = 'channel-card';
+                    
+                    // Determine category class for styling
+                    let categoryClass = '';
+                    let emoji = '📺';
+                    switch(channel.category) {
+                        case 'server2':
+                            categoryClass = 'category-server2';
+                            emoji = '2️⃣';
+                            break;
+                        case 'server1':
+                            categoryClass = 'category-server1';
+                            emoji = '1️⃣';
+                            break;
+                        case 'tennis':
+                            categoryClass = 'category-tennis';
+                            emoji = '🎾';
+                            break;
+                        default:
+                            categoryClass = 'category-server3';
+                            emoji = '3️⃣';
+                    }
+                    
+                    channelCard.innerHTML = `
+                        <div class="channel-icon ${categoryClass}">
+                            ${channel.name}
+                        </div>
+                        <div class="channel-info">
+                            <div class="channel-category">${channel.category.toUpperCase()} ${emoji}</div>
+                            <h3 class="channel-title">${channel.name}</h3>
+                            <button class="watch-btn play-btn" data-url="${channel.url}" data-title="${channel.name}">Watch Now ▶️</button>
+                        </div>
+                    `;
+                    
+                    channelsGrid.appendChild(channelCard);
+                });
+                
+                // Add event listeners to play buttons
+                document.querySelectorAll('.play-btn').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const url = this.getAttribute('data-url');
+                        const title = this.getAttribute('data-title');
+                        
+                        videoTitle.textContent = title;
+                        videoIframe.src = url;
+                        videoContainer.classList.add('active');
+                        
+                        // If it's a vidembed URL, we need to handle it differently
+                        if (url.includes('vidembed')) {
+                            videoIframe.src = url;
+                        } else {
+                            // For other URLs, try to embed them directly
+                            videoIframe.src = url;
+                        }
+                    });
+                });
+            }
+            
+            // Initial render
+            renderChannels();
+            
+            // Filter functionality
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    const filter = this.getAttribute('data-filter');
+                    const searchTerm = searchInput.value;
+                    renderChannels(filter, searchTerm);
+                });
+            });
+            
+            // Search functionality
+            searchInput.addEventListener('input', function() {
+                const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
+                const searchTerm = this.value;
+                renderChannels(activeFilter, searchTerm);
+            });
+        });
+        
+    </script>
+</body>
+</html>
